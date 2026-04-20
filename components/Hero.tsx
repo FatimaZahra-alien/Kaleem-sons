@@ -1,238 +1,161 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 
-const particles = Array.from({ length: 20 }, (_, i) => ({
-  id: i,
-  size: Math.random() * 3 + 2,
-  left: Math.random() * 100,
-  duration: Math.random() * 6 + 5,
-  delay: Math.random() * -10,
-  opacity: Math.random() * 0.35 + 0.15,
-}));
+export default function HeroMinimal() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
 
-export default function Hero() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); }, []);
+  const bgY = useSpring(useTransform(scrollYProgress, [0, 1], ["0%", "25%"]), {
+    stiffness: 80,
+    damping: 30,
+  });
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const contentY = useTransform(scrollYProgress, [0, 0.6], ["0%", "8%"]);
 
   return (
-    <section style={{
-      minHeight: "400px",
-      height: "60vh",
-      background: "#2b1e16",
-      color: "white",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      textAlign: "center",
-      padding: "0 4%",
-      position: "relative",
-      isolation: "isolate",
-      overflow: "hidden",
-    }}>
+    <section
+      ref={containerRef}
+      className="relative w-full h-[80vh] min-h-[680px] overflow-hidden flex items-center bg-black"
+    >
+      {/* Background Image */}
+      <motion.div className="absolute inset-0 z-0" style={{ y: bgY }}>
+        <Image
+          src="/bgbb.jpeg"
+          alt="Athlete in motion - SS 2025 Collection"
+          fill
+          priority
+          quality={95}
+          className="object-cover object-center scale-[1.08]"
+        />
+      </motion.div>
 
-      {/* Radial glow */}
-      <div style={{
-        position: "absolute", inset: 0,
-        background: `
-          radial-gradient(circle at 25% 40%, rgba(220,140,80,0.12) 0%, transparent 50%),
-          radial-gradient(circle at 78% 65%, rgba(190,100,50,0.08) 0%, transparent 50%)
-        `,
-        pointerEvents: "none", zIndex: 1,
-      }} />
+      {/* Overlays */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-r from-black via-black/60 to-transparent" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/40 via-transparent to-black/70" />
 
-      {/* ===================== CIRCLE SKETCHES ONLY ===================== */}
-
-      {/* Top left — 3 ring cluster */}
-      <svg style={{ position:"absolute", top:"6%", left:"2%", width:"90px", height:"90px", zIndex:2, opacity:0.55 }} viewBox="0 0 90 90">
-        <circle cx="45" cy="45" r="40" fill="none" stroke="rgba(190,145,95,0.18)" strokeWidth="0.9" />
-        <circle cx="45" cy="45" r="27" fill="none" stroke="rgba(190,145,95,0.12)" strokeWidth="0.8" />
-        <circle cx="45" cy="45" r="13" fill="none" stroke="rgba(190,145,95,0.07)" strokeWidth="0.6" />
-      </svg>
-
-      {/* Top left area — small offset pair */}
-      <svg style={{ position:"absolute", top:"30%", left:"8%", width:"55px", height:"55px", zIndex:2, opacity:0.45 }} viewBox="0 0 55 55">
-        <circle cx="27" cy="27" r="24" fill="none" stroke="rgba(190,145,95,0.13)" strokeWidth="0.8" />
-        <circle cx="27" cy="27" r="14" fill="none" stroke="rgba(190,145,95,0.08)" strokeWidth="0.6" />
-      </svg>
-
-      {/* Left middle — single large faint ring */}
-      <svg style={{ position:"absolute", top:"52%", left:"-3%", width:"100px", height:"100px", zIndex:2, opacity:0.35 }} viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(190,145,95,0.1)" strokeWidth="0.7" />
-        <circle cx="50" cy="50" r="30" fill="none" stroke="rgba(190,145,95,0.06)" strokeWidth="0.5" />
-      </svg>
-
-      {/* Bottom left — tight trio */}
-      <svg style={{ position:"absolute", bottom:"8%", left:"5%", width:"65px", height:"65px", zIndex:2, opacity:0.5 }} viewBox="0 0 65 65">
-        <circle cx="32" cy="32" r="29" fill="none" stroke="rgba(190,145,95,0.14)" strokeWidth="0.8" />
-        <circle cx="32" cy="32" r="19" fill="none" stroke="rgba(190,145,95,0.09)" strokeWidth="0.7" />
-        <circle cx="32" cy="32" r="8"  fill="none" stroke="rgba(190,145,95,0.05)" strokeWidth="0.5" />
-      </svg>
-
-      {/* Top center — tiny ghost pair */}
-      <svg style={{ position:"absolute", top:"5%", left:"41%", width:"48px", height:"48px", zIndex:2, opacity:0.3 }} viewBox="0 0 48 48">
-        <circle cx="24" cy="24" r="21" fill="none" stroke="rgba(190,145,95,0.1)" strokeWidth="0.7" />
-        <circle cx="24" cy="24" r="11" fill="none" stroke="rgba(190,145,95,0.06)" strokeWidth="0.5" />
-      </svg>
-
-      {/* Top right — large partially clipped rings */}
-      <svg style={{ position:"absolute", top:"4%", right:"-6%", width:"130px", height:"130px", zIndex:2, opacity:0.45 }} viewBox="0 0 130 130">
-        <circle cx="65" cy="65" r="60" fill="none" stroke="rgba(190,145,95,0.12)" strokeWidth="0.9" />
-        <circle cx="65" cy="65" r="42" fill="none" stroke="rgba(190,145,95,0.08)" strokeWidth="0.7" />
-        <circle cx="65" cy="65" r="22" fill="none" stroke="rgba(190,145,95,0.05)" strokeWidth="0.5" />
-      </svg>
-
-      {/* Right middle — offset double */}
-      <svg style={{ position:"absolute", top:"35%", right:"3%", width:"70px", height:"70px", zIndex:2, opacity:0.4 }} viewBox="0 0 70 70">
-        <circle cx="35" cy="35" r="31" fill="none" stroke="rgba(190,145,95,0.11)" strokeWidth="0.8" />
-        <circle cx="35" cy="35" r="18" fill="none" stroke="rgba(190,145,95,0.07)" strokeWidth="0.6" />
-      </svg>
-
-      {/* Bottom right — your original image 2 style, two rings */}
-      <svg style={{ position:"absolute", bottom:"5%", right:"4%", width:"100px", height:"100px", zIndex:2, opacity:0.55 }} viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="44" fill="none" stroke="rgba(190,145,95,0.18)" strokeWidth="1" />
-        <circle cx="50" cy="50" r="29" fill="none" stroke="rgba(190,145,95,0.12)" strokeWidth="0.8" />
-      </svg>
-
-      {/* Bottom center — small single */}
-      <svg style={{ position:"absolute", bottom:"4%", left:"37%", width:"52px", height:"52px", zIndex:2, opacity:0.38 }} viewBox="0 0 52 52">
-        <circle cx="26" cy="26" r="23" fill="none" stroke="rgba(190,145,95,0.11)" strokeWidth="0.7" />
-        <circle cx="26" cy="26" r="13" fill="none" stroke="rgba(190,145,95,0.07)" strokeWidth="0.5" />
-      </svg>
-
-      {/* Right lower — tiny ghost single */}
-      <svg style={{ position:"absolute", top:"68%", right:"14%", width:"38px", height:"38px", zIndex:2, opacity:0.3 }} viewBox="0 0 38 38">
-        <circle cx="19" cy="19" r="16" fill="none" stroke="rgba(190,145,95,0.09)" strokeWidth="0.6" />
-      </svg>
-
-      {/* ===================== LIGHT SWEEP ===================== */}
+      {/* Top Accent */}
       <motion.div
-        animate={{ x: ["-30%", "140%"] }}
-        transition={{ duration: 3.5, ease: "easeInOut", repeat: Infinity, repeatDelay: 2.5 }}
-        style={{
-          position: "absolute", top: "-50%", left: 0,
-          width: "16%", height: "200%",
-          background: "linear-gradient(90deg, transparent, rgba(245,220,180,0.07), transparent)",
-          transform: "skewX(-20deg)",
-          pointerEvents: "none", zIndex: 3,
-        }}
+        className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent z-20"
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
       />
 
-      {/* ===================== PARTICLES ===================== */}
-      {mounted && particles.map((p) => (
+      {/* Main Content */}
+      <motion.div
+      className="relative z-20 pr-8 max-w-5xl w-full"
+style={{ paddingLeft: "clamp(2.5rem, 4vw, 8rem)" }}
+       
+      >
+        {/* Micro Label */}
         <motion.div
-          key={p.id}
-          animate={{ y: ["100vh", "-20vh"], opacity: [0, p.opacity, 0] }}
-          transition={{ duration: p.duration, delay: p.delay, repeat: Infinity, ease: "linear" }}
-          style={{
-            position: "absolute",
-            width: p.size, height: p.size,
-            borderRadius: "50%",
-            background: "rgba(210,170,120,0.5)",
-            left: `${p.left}%`,
-            pointerEvents: "none", zIndex: 3,
-          }}
-        />
-      ))}
-
-      {/* ===================== CONTENT BOX — UNTOUCHED ===================== */}
-      <div style={{
-        position: "relative", zIndex: 5,
-        maxWidth: "800px", width: "100%",
-        background: "rgba(0,0,0,0.25)",
-        backdropFilter: "blur(3px)",
-        padding: "1.5rem 1.2rem",
-        borderRadius: "60px 20px 60px 20px",
-        border: "1px solid rgba(255,255,240,0.15)",
-        boxShadow: "0 20px 30px rgba(0,0,0,0.4)",
-      }}>
-        <div style={{ overflow: "hidden" }}>
-          <motion.h1
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            style={{
-              fontFamily: "'Montserrat', sans-serif",
-              fontWeight: 900,
-              fontSize: "clamp(2.8rem, 10vw, 5rem)",
-              lineHeight: 0.9,
-              textTransform: "uppercase",
-              color: "#ffffff",
-              letterSpacing: "-1px",
-              margin: 0,
-            }}
-          >
-            NEW
-          </motion.h1>
-        </div>
-
-        <div style={{ overflow: "hidden", marginBottom: "0.4rem" }}>
-          <motion.h1
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.32 }}
-            style={{
-              fontFamily: "'Montserrat', sans-serif",
-              fontWeight: 900,
-              fontSize: "clamp(2.8rem, 10vw, 5rem)",
-              lineHeight: 0.9,
-              textTransform: "uppercase",
-              color: "#ffffff",
-              letterSpacing: "-1px",
-              margin: 0,
-            }}
-          >
-            ARRIVAL
-          </motion.h1>
-        </div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.85 }}
-          style={{
-            fontFamily: "'Prata', serif",
-            fontSize: "0.95rem",
-            marginBottom: "1rem",
-            maxWidth: "320px",
-            marginLeft: "auto",
-            marginRight: "auto",
-            background: "rgba(0,0,0,0.3)",
-            padding: "0.4rem 1rem",
-            borderRadius: "60px",
-            backdropFilter: "blur(4px)",
-            border: "1px solid rgba(255,215,140,0.3)",
-            color: "rgba(220,195,160,0.9)",
-          }}
+          className="flex items-center gap-3 mb-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
         >
-          Crafted for Modern Men.
+          <div className="h-px w-8 bg-white/40" />
+          <p className="text-white/60 text-[10px] tracking-[3px] uppercase font-light">
+            SPRING SUMMER 2026
+          </p>
+        </motion.div>
+
+        {/* Headline */}
+        <div className="space-y-1 mb-16">
+          <motion.h1
+            className="text-[clamp(3.4rem,8.5vw,7rem)] font-light text-white leading-[0.9] tracking-[-0.04em]"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.1, ease: [0.215, 0.61, 0.355, 1] }}
+          >
+            Defined by
+          </motion.h1>
+
+          <motion.h1
+            className="text-[clamp(3.4rem,8.5vw,7rem)] font-semibold text-white leading-[0.9] tracking-[-0.04em] italic"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.1, delay: 0.12 }}
+          >
+            Strength.
+          </motion.h1>
+        </div>
+
+        {/* Description */}
+        <motion.p
+          className="max-w-md text-white/75 text-[15.5px] leading-relaxed tracking-wide mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.9 }}
+        >
+            <br />
+          Performance-driven apparel engineered for those who push limits.
+          Sweat-wicking. Squat-proof. Built to last.
+          
         </motion.p>
 
-        <motion.a
-          href="/components/ProductGrid"
-          initial={{ opacity: 0, y: 8 }}
+        {/* Single CTA Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 1.15 }}
-          whileHover={{ scale: 1.06 }}
-          whileTap={{ scale: 0.97 }}
-          style={{
-            display: "inline-block",
-            background: "white",
-            color: "black",
-            padding: "0.5rem 1.4rem",
-            borderRadius: "50px",
-            fontWeight: 600,
-            textTransform: "uppercase",
-            letterSpacing: "0.7px",
-            fontSize: "0.75rem",
-            textDecoration: "none",
-            cursor: "pointer",
-          }}
+          transition={{ delay: 0.8, duration: 0.9 }}
         >
-          SHOP NOW
-        </motion.a>
-      </div>
+
+           
+          
+
+
+          <Link href="/collections">
+  <motion.button
+    className="group relative px-12 py-6 bg-white text-black text-sm tracking-[2.5px] uppercase font-semibold overflow-hidden flex items-center gap-3 shadow-lg"
+    whileHover={{ scale: 1.03 }}
+    whileTap={{ scale: 0.97 }}
+    transition={{ duration: 0.2 }}
+  >
+    {/* Background fill animation */}
+    <div className="absolute inset-0 bg-black scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
+    
+    <span className="relative z-10 group-hover:text-white transition-colors duration-500">
+      Find Your Fit
+    </span>
+
+    {/* Arrow */}
+    <motion.span
+      className="relative z-10 text-xl group-hover:translate-x-1 transition-transform duration-300"
+      animate={{ x: [0, 3, 0] }}
+      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+    >
+      →
+    </motion.span>
+  </motion.button>
+</Link>
+        </motion.div>
+      </motion.div>
+
+      {/* Right Vertical Text */}
+      <motion.div
+        className="absolute right-8 xl:right-12 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-8 z-30"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+      >
+        <div className="h-16 w-px bg-gradient-to-b from-transparent via-white/30 to-transparent" />
+        <p
+          className="text-[10px] tracking-[2px] uppercase text-black/40"
+          style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
+        >
+          Scroll to discover
+        </p>
+      </motion.div>
     </section>
   );
 }

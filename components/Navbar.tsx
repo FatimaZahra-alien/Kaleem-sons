@@ -10,7 +10,7 @@ export default function Header() {
     <header style={{
       position: "sticky",
       top: 0,
-      zIndex: 1000,
+      zIndex: 100,
       background: "rgba(255,255,255,0.96)",
       backdropFilter: "blur(12px)",
       borderBottom: "1px solid rgba(0,0,0,0.08)",

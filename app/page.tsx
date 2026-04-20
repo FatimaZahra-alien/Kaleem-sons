@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 
 import ProductGrid from "@/components/ProductGrid";
+import Ribbon from "@/components/Ribbon";
 import Slider from "@/components/Slider";
 import Bestsellers from "@/components/Bestsellers";
 import Newsletter from "@/components/Newsletter";
@@ -18,7 +19,9 @@ export default function Home() {
       <Hero />
       
       <ProductGrid />
+      
       <Slider />
+       <Ribbon />
       <Bestsellers />
       
       <Newsletter />

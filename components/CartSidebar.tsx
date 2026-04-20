@@ -11,17 +11,17 @@ export default function CartSidebar() {
       {/* Backdrop */}
       {isCartOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
+          className="fixed inset-0 z-[99] bg-black/50 backdrop-blur-sm"
           onClick={() => setIsCartOpen(false)}
         />
       )}
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 right-0 z-50 h-full w-full max-w-[380px] bg-white flex flex-col transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 z-[100] h-full w-full max-w-[380px] bg-white flex flex-col transition-transform duration-300 ease-in-out ${
           isCartOpen ? "translate-x-0" : "translate-x-full"
         }`}
-        style={{ boxShadow: "-8px 0 40px rgba(0,0,0,0.12)" }}
+        style={{ boxShadow: "-8px 0 40px rgba(0,0,0,0.15)" }}
       >
 
         {/* Header */}
@@ -72,7 +72,6 @@ export default function CartSidebar() {
           ) : (
             items.map((item) => (
               <div key={`${item.id}-${item.size}`} className="flex gap-4 pb-5 border-b border-gray-100 last:border-0">
-                {/* Image */}
                 <div className="w-[78px] h-[90px] rounded-xl overflow-hidden bg-gray-50 shrink-0">
                   <img
                     src={item.image}
@@ -81,7 +80,6 @@ export default function CartSidebar() {
                   />
                 </div>
 
-                {/* Info */}
                 <div className="flex-1 flex flex-col justify-between py-0.5">
                   <div>
                     <p className="text-[0.85rem] font-semibold text-gray-900 leading-snug">{item.name}</p>
@@ -89,7 +87,6 @@ export default function CartSidebar() {
                   </div>
 
                   <div className="flex items-center justify-between mt-2">
-                    {/* Qty controls */}
                     <div className="flex items-center gap-0 border border-gray-200 rounded-lg overflow-hidden">
                       <button
                         onClick={() => updateQuantity(item.id, item.size, item.quantity - 1)}
@@ -108,7 +105,6 @@ export default function CartSidebar() {
                       </button>
                     </div>
 
-                    {/* Price + remove */}
                     <div className="flex flex-col items-end gap-1">
                       <p className="text-[0.88rem] font-bold text-gray-900">
                         Rs. {(item.price * item.quantity).toLocaleString()}
@@ -127,10 +123,8 @@ export default function CartSidebar() {
           )}
         </div>
 
-        {/* Footer — pb-24 clears the WhatsApp floating button */}
         {items.length > 0 && (
           <div className="px-6 pt-4 pb-24 border-t border-gray-100 bg-white">
-            {/* Order summary */}
             <div className="space-y-2 mb-4">
               <div className="flex justify-between text-[0.82rem]">
                 <span className="text-gray-500">Subtotal ({totalItems} {totalItems === 1 ? "item" : "items"})</span>
@@ -142,16 +136,13 @@ export default function CartSidebar() {
               </div>
             </div>
 
-            {/* Divider */}
             <div className="border-t border-dashed border-gray-200 mb-4" />
 
-            {/* Total */}
             <div className="flex justify-between items-center mb-5">
               <span className="text-[0.88rem] font-semibold text-gray-900">Total</span>
               <span className="text-[1.05rem] font-bold text-gray-900">Rs. {totalPrice.toLocaleString()}</span>
             </div>
 
-            {/* CTA */}
             <button
               onClick={() => { setIsCartOpen(false); router.push("/checkout") }}
               className="w-full bg-gray-900 text-white rounded-xl py-3.5 text-[0.85rem] font-semibold tracking-wide hover:bg-gray-800 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
