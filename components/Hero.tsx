@@ -25,16 +25,16 @@ export default function HeroMinimal() {
       className="relative w-full h-[80vh] min-h-[680px] overflow-hidden flex items-center bg-black"
     >
       {/* Background Image */}
-      <motion.div className="absolute inset-0 z-0" style={{ y: bgY }}>
-        <Image
-          src="/bgbb.jpeg"
-          alt="Athlete in motion - SS 2025 Collection"
-          fill
-          priority
-          quality={95}
-          className="object-cover object-center scale-[1.08]"
-        />
-      </motion.div>
+<div className="absolute inset-0 z-0">
+  <Image
+    src="/bgbb.jpeg"
+    alt="Athlete in motion - SS 2025 Collection"
+    fill
+    priority
+    quality={95}
+    className="object-cover object-center scale-[1.08]"
+  />
+</div>
 
       {/* Overlays */}
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-black via-black/60 to-transparent" />
@@ -125,7 +125,7 @@ style={{ paddingLeft: "clamp(2.5rem, 4vw, 8rem)" }}
     <div className="absolute inset-0 bg-black scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
     
     <span className="relative z-10 group-hover:text-white transition-colors duration-500">
-      Find Your Fit
+      Explore Our Collection
     </span>
 
     {/* Arrow */}

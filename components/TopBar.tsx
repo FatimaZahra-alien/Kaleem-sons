@@ -1,21 +1,45 @@
-export default function TopBar() {
-  return (
-    <div style={{
-      background: "#000000",
-      color: "white",
-      textAlign: "center",
-      padding: "0.2rem 0.8rem",
-      fontSize: "0.7rem",
-      fontWeight: 400,
-      letterSpacing: "0.4px",
-      textTransform: "uppercase",
-      borderBottom: "1px solid #222",
-      lineHeight: 1.2,
-    }}>
-      <span className="material-symbols-outlined" style={{ fontSize: "0.8rem", verticalAlign: "middle", marginRight: "3px" }}>
-        local_shipping
+"use client";
+
+import { motion } from "framer-motion";
+
+const items = [
+ 
+  "NEW ARRIVALS",
+  "🔥 FLAT 50% OFF",
+  "LIMITED TIME DEAL",
+  "FREE DELIVERY",
+ 
+];
+
+export default function Ribbon() {
+  const content = items.map((item, i) => (
+    <span key={i} className="flex items-center gap-6">
+      <span className="text-[13px] md:text-[14px] tracking-[3px] uppercase font-semibold text-white whitespace-nowrap">
+        {item}
       </span>
-      FREE DELIVERY $120+
+      <span className="text-white/30 text-[10px]">|</span>
+    </span>
+  ));
+
+  return (
+    <div className="bg-black py-3 overflow-hidden border-b border-[#C9A84C]/30">
+      <div className="flex overflow-hidden">
+        <motion.div
+          className="flex items-center gap-6 whitespace-nowrap"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{
+            duration: 22,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        >
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+        </motion.div>
+      </div>
     </div>
   );
 }

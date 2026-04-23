@@ -85,39 +85,51 @@ export default function PrivacyPolicy() {
   ];
 
   return (
-    <div className="min-h-screen bg-white text-gray-800">
+    <div className="min-h-screen bg-white text-black">
 
       {/* Header */}
-      <div className="border-b border-gray-200 bg-white">
-        <div className="max-w-3xl mx-auto px-6 py-12">
-          <p className="text-xs uppercase tracking-widest text-gray-400 mb-3">Kaleem Sons</p>
-          <h1 className="text-3xl font-semibold text-gray-900 mb-2">Privacy Policy</h1>
-          <p className="text-sm text-gray-400">Effective: April 15, 2025 &nbsp;·&nbsp; Last Updated: April 15, 2025</p>
+      <div className="border-b border-black/10">
+        <div className="max-w-4xl mx-auto px-6 md:px-8 py-8">
+          <h1 className="text-4xl font-semibold tracking-tight mb-3">
+            Privacy Policy
+          </h1>
+          <p className="text-sm text-black/40">
+            Effective: April 15, 2025 · Last Updated: April 15, 2025
+          </p>
         </div>
       </div>
 
       {/* Sections */}
-      <div className="max-w-3xl mx-auto px-6 py-12 space-y-10">
+      <div className="max-w-4xl mx-auto px-6 md:px-8 py-16 space-y-16">
         {sections.map((section, i) => (
-          <div key={i} className="border-b border-gray-100 pb-10">
-            <div className="flex items-start gap-4 mb-3">
-              <span className="text-xs font-medium text-gray-300 mt-1 w-6 shrink-0">{section.number}</span>
-              <h2 className="text-base font-semibold text-gray-900">{section.title}</h2>
+          <div key={i} className="space-y-5">
+
+            <div className="flex items-start gap-6">
+              <span className="text-xs text-black/30 mt-1 w-8 shrink-0">
+                {section.number}
+              </span>
+              <h2 className="text-lg font-medium">
+                {section.title}
+              </h2>
             </div>
 
-            <div className="ml-10">
+            <div className="pl-14 space-y-4">
               {section.content && (
-                <p className="text-sm text-gray-600 leading-7 mb-3">{section.content}</p>
+                <p className="text-[15px] leading-7 text-black/70">
+                  {section.content}
+                </p>
               )}
 
               {section.list && (
-                <ul className="space-y-2">
+                <ul className="space-y-3">
                   {section.list.map((item, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-gray-600 leading-6">
-                      <span className="mt-2.5 w-1 h-1 rounded-full bg-gray-400 shrink-0" />
+                    <li key={j} className="flex gap-3 text-[15px] text-black/70 leading-7">
+                      <span className="mt-[10px] w-1 h-1 bg-black/40 rounded-full shrink-0" />
                       <span>
                         {item.label && (
-                          <span className="font-medium text-gray-700">{item.label} — </span>
+                          <span className="font-medium text-black">
+                            {item.label} —{" "}
+                          </span>
                         )}
                         {item.desc}
                       </span>
@@ -126,31 +138,21 @@ export default function PrivacyPolicy() {
                 </ul>
               )}
             </div>
+
           </div>
         ))}
 
         {/* Contact */}
-        <div className="border-b border-gray-100 pb-10">
-          <div className="flex items-start gap-4 mb-3">
-            <span className="text-xs font-medium text-gray-300 mt-1 w-6 shrink-0">11</span>
-            <h2 className="text-base font-semibold text-gray-900">Contact Us</h2>
+        <div className="pt-10 border-t border-black/10 space-y-4">
+          <h2 className="text-lg font-medium">Contact Us</h2>
+          <p className="text-[15px] text-black/70">
+            If you have any questions, please reach out:
+          </p>
+          <div className="space-y-1 text-[15px] text-black/60">
+            <p>Sialkot, Pakistan</p>
+            <p>baseerbutt444gmail.com</p>
+            <p>+92 326 5546 298</p>
           </div>
-          <div className="ml-10 space-y-1 text-sm text-gray-600">
-            <p>If you have any questions about this Privacy Policy, please reach out:</p>
-            <div className="mt-4 space-y-2">
-              <p>📍 <span className="text-gray-500">Pakistan</span></p>
-              <p>📧 <span className="text-gray-500">your@email.com</span></p>
-              <p>📱 <span className="text-gray-500">+92 XXX XXXXXXX</span></p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <div className="border-t border-gray-100 px-6 py-5">
-        <div className="max-w-3xl mx-auto flex flex-wrap justify-between items-center gap-2">
-          <p className="text-xs text-gray-400">Kaleem Sons — Crafted for Modern Men</p>
-          <p className="text-xs text-gray-400">© 2025 All rights reserved</p>
         </div>
       </div>
 

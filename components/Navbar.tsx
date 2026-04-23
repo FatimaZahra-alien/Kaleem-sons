@@ -1,6 +1,7 @@
 "use client"
 import { useSession, signOut } from "next-auth/react"
 import { useCart } from "@/context/CartContext"
+import Link from "next/link"
 
 export default function Header() {
   const { data: session } = useSession()
@@ -30,23 +31,30 @@ export default function Header() {
         </span>
       </div>
 
-      {/* Logo */}
-      <div style={{
-        fontFamily: "'Playfair Display', serif",
-        fontSize: "1.3rem",
-        fontWeight: 700,
-        letterSpacing: "-0.2px",
-        lineHeight: 1,
-      }}>
-        Kaleem Sons
-      </div>
+      {/* ✅ Logo (NOW CLICKABLE) */}
+      <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>
+        <div style={{
+          fontFamily: "'Playfair Display', serif",
+          fontSize: "1.3rem",
+          fontWeight: 700,
+          letterSpacing: "-0.2px",
+          lineHeight: 1,
+          cursor: "pointer"
+        }}>
+          Kaleem Sons
+        </div>
+      </Link>
 
       {/* Nav - desktop only */}
       <nav className="desktop-nav">
         <ul style={{ display: "flex", gap: "2.2rem", fontSize: "0.95rem", listStyle: "none", margin: 0, padding: 0 }}>
-          {["New In", "Suits", "Casual", "Shop All", "Outlet"].map((item) => (
-            <li key={item}><a href="#" style={{ textDecoration: "none", color: "inherit" }}>{item}</a></li>
-          ))}
+          
+          <li><Link href="/new-in" style={{ textDecoration: "none", color: "inherit" }}>New In</Link></li>
+          <li><Link href="/suits" style={{ textDecoration: "none", color: "inherit" }}>Suits</Link></li>
+          <li><Link href="/casual" style={{ textDecoration: "none", color: "inherit" }}>Casual</Link></li>
+          <li><Link href="/shop" style={{ textDecoration: "none", color: "inherit" }}>Shop All</Link></li>
+          <li><Link href="/outlet" style={{ textDecoration: "none", color: "inherit" }}>Outlet</Link></li>
+
         </ul>
       </nav>
 
@@ -55,12 +63,12 @@ export default function Header() {
 
         {/* Search */}
         <a href="#" aria-label="Search" style={{ display: "flex", alignItems: "center", color: "#232323" }}>
-          <span className="material-symbols-outlined" style={{ fontSize: "1.5rem", fontVariationSettings: "'FILL' 0, 'wght' 350" }}>
+          <span className="material-symbols-outlined" style={{ fontSize: "1.5rem" }}>
             search
           </span>
         </a>
 
-        {/* Account — shows name + signout if logged in, opens auth modal if not */}
+        {/* Account */}
         {session ? (
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <span style={{ fontSize: "0.8rem", color: "#555", maxWidth: "90px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
@@ -69,9 +77,8 @@ export default function Header() {
             <button
               onClick={() => signOut({ callbackUrl: "/" })}
               style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", color: "#232323" }}
-              aria-label="Sign out"
             >
-              <span className="material-symbols-outlined" style={{ fontSize: "1.5rem", fontVariationSettings: "'FILL' 0, 'wght' 350" }}>
+              <span className="material-symbols-outlined" style={{ fontSize: "1.5rem" }}>
                 logout
               </span>
             </button>
@@ -80,21 +87,19 @@ export default function Header() {
           <button
             onClick={() => setIsAuthModalOpen(true)}
             style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", color: "#232323" }}
-            aria-label="Account"
           >
-            <span className="material-symbols-outlined" style={{ fontSize: "1.5rem", fontVariationSettings: "'FILL' 0, 'wght' 350" }}>
+            <span className="material-symbols-outlined" style={{ fontSize: "1.5rem" }}>
               account_circle
             </span>
           </button>
         )}
 
-        {/* Cart bag — live count from CartContext */}
+        {/* Cart */}
         <button
           onClick={() => setIsCartOpen(true)}
-          aria-label="Shopping bag"
-          style={{ position: "relative", display: "flex", alignItems: "center", color: "#232323", background: "none", border: "none", cursor: "pointer" }}
+          style={{ position: "relative", display: "flex", alignItems: "center", background: "none", border: "none", cursor: "pointer" }}
         >
-          <span className="material-symbols-outlined" style={{ fontSize: "1.5rem", fontVariationSettings: "'FILL' 0, 'wght' 350" }}>
+          <span className="material-symbols-outlined" style={{ fontSize: "1.5rem" }}>
             shopping_bag
           </span>
           {totalItems > 0 && (
@@ -102,7 +107,7 @@ export default function Header() {
               position: "absolute",
               top: "-5px",
               right: "-6px",
-              background: "var(--primary, #111)",
+              background: "#111",
               color: "white",
               fontSize: "0.55rem",
               width: "15px",
@@ -120,7 +125,6 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Responsive styles */}
       <style>{`
         @media (max-width: 768px) {
           #hamburger-btn { display: flex !important; }
