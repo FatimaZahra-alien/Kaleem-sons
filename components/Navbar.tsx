@@ -31,7 +31,7 @@ export default function Header() {
         </span>
       </div>
 
-      {/* ✅ Logo (NOW CLICKABLE) */}
+      {/* Logo */}
       <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>
         <div style={{
           fontFamily: "'Playfair Display', serif",
@@ -48,13 +48,12 @@ export default function Header() {
       {/* Nav - desktop only */}
       <nav className="desktop-nav">
         <ul style={{ display: "flex", gap: "2.2rem", fontSize: "0.95rem", listStyle: "none", margin: 0, padding: 0 }}>
-          
           <li><Link href="/new-in" style={{ textDecoration: "none", color: "inherit" }}>New In</Link></li>
-          <li><Link href="/suits" style={{ textDecoration: "none", color: "inherit" }}>Suits</Link></li>
-          <li><Link href="/casual" style={{ textDecoration: "none", color: "inherit" }}>Casual</Link></li>
-          <li><Link href="/shop" style={{ textDecoration: "none", color: "inherit" }}>Shop All</Link></li>
-          <li><Link href="/outlet" style={{ textDecoration: "none", color: "inherit" }}>Outlet</Link></li>
-
+          <li><Link href="/t-shirts" style={{ textDecoration: "none", color: "inherit" }}>T-Shirts</Link></li>
+          <li><Link href="/hoodies" style={{ textDecoration: "none", color: "inherit" }}>Hoodies</Link></li>
+          <li><Link href="/track-suits" style={{ textDecoration: "none", color: "inherit" }}>Track Suits</Link></li>
+          <li><Link href="/karate" style={{ textDecoration: "none", color: "inherit" }}>Karate</Link></li>
+          <li><Link href="/jiu-jitsu" style={{ textDecoration: "none", color: "inherit" }}>Jiu Jitsu</Link></li>
         </ul>
       </nav>
 

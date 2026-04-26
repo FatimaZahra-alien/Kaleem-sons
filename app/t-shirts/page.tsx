@@ -15,47 +15,7 @@ const products = [
   },
   {
     id: 2,
-    name: "Heavyweight Hoodie",
-    category: "Hoodies",
-    price: 3200,
-    image: "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=600&q=80",
-    description: "Thick fleece construction with a kangaroo pocket. Brushed interior for extra warmth.",
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: ["Black", "Charcoal", "Navy"],
-  },
-  {
-    id: 3,
-    name: "Elite Track Suit",
-    category: "Track Suits",
-    price: 5500,
-    image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80",
-    description: "Matching jacket and jogger set. Moisture-wicking fabric with zippered pockets.",
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: ["Black", "White"],
-  },
-  {
-    id: 4,
-    name: "Pro Karate Gi",
-    category: "Karate",
-    price: 4200,
-    image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?w=600&q=80",
-    description: "Tournament-grade karate uniform. Lightweight yet durable. Double-stitched seams throughout.",
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: ["White"],
-  },
-  {
-    id: 5,
-    name: "Jiu Jitsu Gi",
-    category: "Jiu Jitsu",
-    price: 6500,
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80",
-    description: "Competition BJJ gi with reinforced collar and knees. Pre-shrunk pearl weave fabric.",
-    sizes: ["A1", "A2", "A3", "A4"],
-    colors: ["White", "Black", "Blue"],
-  },
-  {
-    id: 6,
-    name: "Compression Tee",
+    name: "Compression Training Tee",
     category: "T-Shirts",
     price: 2200,
     image: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80",
@@ -63,11 +23,51 @@ const products = [
     sizes: ["S", "M", "L", "XL", "XXL"],
     colors: ["Black", "White", "Red"],
   },
+  {
+    id: 3,
+    name: "Essential Crew Tee",
+    category: "T-Shirts",
+    price: 1500,
+    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80",
+    description: "Classic crew neck with a relaxed fit. Soft-touch fabric that gets better with every wash.",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: ["White", "Black", "Navy"],
+  },
+  {
+    id: 4,
+    name: "Muscle Fit Tee",
+    category: "T-Shirts",
+    price: 1900,
+    image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&q=80",
+    description: "Tailored muscle fit that hugs the right places. Moisture-wicking blend for all-day wear.",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: ["Black", "Grey", "White"],
+  },
+  {
+    id: 5,
+    name: "Longline Performance Tee",
+    category: "T-Shirts",
+    price: 2000,
+    image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&q=80",
+    description: "Extended length design with side slits. Breathable mesh panels for ventilation.",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: ["Black", "Olive", "White"],
+  },
+  {
+    id: 6,
+    name: "Graphic Sport Tee",
+    category: "T-Shirts",
+    price: 2100,
+    image: "https://images.unsplash.com/photo-1562157873-818bc0726f68?w=600&q=80",
+    description: "Bold graphic print on premium heavyweight cotton. A statement piece for the streets.",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: ["Black", "White"],
+  },
 ]
 
 type Product = typeof products[0]
 
-export default function NewInPage() {
+export default function TShirtsPage() {
   const [selected, setSelected] = useState<Product | null>(null)
   const [selectedSize, setSelectedSize] = useState("")
   const [selectedColor, setSelectedColor] = useState("")
@@ -96,7 +96,7 @@ export default function NewInPage() {
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "60px" }}>
           <p style={{ fontSize: "0.7rem", letterSpacing: "4px", color: "#999", textTransform: "uppercase", marginBottom: "12px" }}>
-            Spring Summer 2026
+            Collection
           </p>
           <h1 style={{
             fontFamily: "'Playfair Display', serif",
@@ -106,10 +106,10 @@ export default function NewInPage() {
             marginBottom: "14px",
             lineHeight: 1.1,
           }}>
-            New In
+            T-Shirts
           </h1>
           <p style={{ color: "#888", fontSize: "0.9rem", letterSpacing: "0.5px" }}>
-            Discover the latest arrivals — fresh drops every week.
+            Premium tees built for performance and everyday style.
           </p>
           <div style={{ width: "40px", height: "1px", background: "#ddd", margin: "20px auto 0" }} />
         </div>
@@ -146,7 +146,6 @@ export default function NewInPage() {
                   }}
                   className="product-img"
                 />
-                {/* Hover overlay */}
                 <div className="card-overlay" style={{
                   position: "absolute",
                   inset: 0,
@@ -237,7 +236,7 @@ export default function NewInPage() {
             </button>
 
             {/* Image */}
-            <div style={{ aspectRatio: "3/4", overflow: "hidden" }}>
+            <div style={{ overflow: "hidden" }}>
               <img
                 src={selected.image}
                 alt={selected.name}
@@ -356,11 +355,6 @@ export default function NewInPage() {
         .product-card:hover .card-overlay { background: rgba(0,0,0,0.25) !important; }
         .product-card:hover .card-label { opacity: 1 !important; }
 
-        @media (max-width: 600px) {
-          .product-card > div:first-child { aspect-ratio: 1/1 !important; }
-        }
-
-        /* Modal responsive */
         @media (max-width: 640px) {
           div[style*="grid-template-columns: 1fr 1fr"] {
             grid-template-columns: 1fr !important;
