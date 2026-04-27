@@ -10,7 +10,7 @@ export default function WhatsAppButton() {
 
   return (
     <a
-      href="https://wa.me/+923265546298?text=Hi%2C%20I%20want%20to%20order%20from%20Kaleem%20Sons!"
+      href="https://wa.me/+447513400064?text=Hi%2C%20I%20want%20to%20order%20from%20Kaleem%20Sons!"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
