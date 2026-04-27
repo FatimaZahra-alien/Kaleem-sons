@@ -12,7 +12,7 @@ export default function Footer() {
   const socials = [
     {
       label: "Instagram",
-      href: "https://instagram.com/your_handle",
+      href: "https://www.instagram.com/kaleem.sons",
       hoverColor: "#E1306C",
       icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -42,7 +42,7 @@ export default function Footer() {
     },
     {
       label: "Fiverr",
-      href: "https://fiverr.com/your_username",
+      href: "https://www.fiverr.com/users/businessaccbtt",
       hoverColor: "#1DBF73",
       icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">

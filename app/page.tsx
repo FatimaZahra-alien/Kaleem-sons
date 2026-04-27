@@ -1,5 +1,6 @@
 
 import Hero from "@/components/Hero";
+import Categories from "@/components/Categories";
 import ProductGrid from "@/components/ProductGrid";
 import Slider from "@/components/Slider";
 import Bestsellers from "@/components/Bestsellers";
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <Categories />
       <ProductGrid />
       <Slider />
       <Bestsellers />

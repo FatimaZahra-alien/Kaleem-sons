@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import AddToCart from "@/components/AddToCart"
 
 const products = [
   {
@@ -82,6 +83,8 @@ export default function HoodiesPage() {
     setSelected(null)
   }
 
+  const bothSelected = selectedSize !== "" && selectedColor !== ""
+
   return (
     <>
       <main style={{
@@ -91,24 +94,11 @@ export default function HoodiesPage() {
         padding: "100px 0 80px",
         width: "100%",
       }}>
-
-        {/* Inner wrapper */}
-        <div style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "0 4%",
-          background: "#ffffff",
-        }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 4%", background: "#ffffff" }}>
 
           {/* Header */}
           <div style={{ textAlign: "center", marginBottom: "60px" }}>
-            <p style={{
-              fontSize: "0.7rem",
-              letterSpacing: "4px",
-              color: "#999",
-              textTransform: "uppercase",
-              marginBottom: "12px",
-            }}>
+            <p style={{ fontSize: "0.7rem", letterSpacing: "4px", color: "#999", textTransform: "uppercase", marginBottom: "12px" }}>
               Collection
             </p>
             <h1 style={{
@@ -128,11 +118,7 @@ export default function HoodiesPage() {
           </div>
 
           {/* Grid */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-            gap: "32px",
-          }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "32px" }}>
             {products.map((product) => (
               <div
                 key={product.id}
@@ -140,66 +126,32 @@ export default function HoodiesPage() {
                 style={{ cursor: "pointer", background: "#ffffff" }}
                 className="product-card"
               >
-                {/* Image */}
-                <div style={{
-                  width: "100%",
-                  aspectRatio: "3/4",
-                  overflow: "hidden",
-                  background: "#f8f8f8",
-                  position: "relative",
-                }}>
+                <div style={{ width: "100%", aspectRatio: "3/4", overflow: "hidden", background: "#f8f8f8", position: "relative" }}>
                   <img
                     src={product.image}
                     alt={product.name}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      transition: "transform 0.6s ease",
-                    }}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s ease" }}
                     className="product-img"
                   />
                   <div className="card-overlay" style={{
-                    position: "absolute",
-                    inset: 0,
-                    background: "rgba(0,0,0,0)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    transition: "background 0.3s ease",
+                    position: "absolute", inset: 0, background: "rgba(0,0,0,0)",
+                    display: "flex", alignItems: "center", justifyContent: "center", transition: "background 0.3s ease",
                   }}>
                     <span className="card-label" style={{
-                      color: "white",
-                      fontSize: "0.7rem",
-                      letterSpacing: "3px",
-                      textTransform: "uppercase",
-                      opacity: 0,
-                      transition: "opacity 0.3s ease",
-                      background: "rgba(0,0,0,0.6)",
-                      padding: "10px 20px",
+                      color: "white", fontSize: "0.7rem", letterSpacing: "3px", textTransform: "uppercase",
+                      opacity: 0, transition: "opacity 0.3s ease", background: "rgba(0,0,0,0.6)", padding: "10px 20px",
                     }}>
                       View Details
                     </span>
                   </div>
                 </div>
 
-                {/* Info */}
                 <div style={{ paddingTop: "14px", background: "#fff" }}>
-                  <p style={{
-                    fontSize: "0.65rem",
-                    letterSpacing: "2px",
-                    color: "#aaa",
-                    textTransform: "uppercase",
-                    marginBottom: "4px",
-                  }}>
+                  <p style={{ fontSize: "0.65rem", letterSpacing: "2px", color: "#aaa", textTransform: "uppercase", marginBottom: "4px" }}>
                     {product.category}
                   </p>
-                  <p style={{ fontSize: "1rem", fontWeight: 500, marginBottom: "4px" }}>
-                    {product.name}
-                  </p>
-                  <p style={{ fontSize: "0.9rem", fontWeight: 600, color: "#111" }}>
-                    PKR {product.price.toLocaleString()}
-                  </p>
+                  <p style={{ fontSize: "1rem", fontWeight: 500, marginBottom: "4px" }}>{product.name}</p>
+                  <p style={{ fontSize: "0.9rem", fontWeight: 600, color: "#111" }}>PKR {product.price.toLocaleString()}</p>
                 </div>
               </div>
             ))}
@@ -212,85 +164,38 @@ export default function HoodiesPage() {
         <div
           onClick={closeModal}
           style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(0,0,0,0.6)",
-            zIndex: 999,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "20px",
-            backdropFilter: "blur(4px)",
+            position: "fixed", inset: 0, background: "rgba(0,0,0,0.6)", zIndex: 999,
+            display: "flex", alignItems: "center", justifyContent: "center", padding: "20px", backdropFilter: "blur(4px)",
           }}
         >
           <div
             onClick={(e) => e.stopPropagation()}
             style={{
-              background: "#fff",
-              maxWidth: "860px",
-              width: "100%",
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              maxHeight: "90vh",
-              overflow: "hidden",
-              position: "relative",
+              background: "#fff", maxWidth: "860px", width: "100%",
+              display: "grid", gridTemplateColumns: "1fr 1fr",
+              maxHeight: "90vh", overflow: "hidden", position: "relative",
             }}
           >
             {/* Close */}
             <button
               onClick={closeModal}
-              style={{
-                position: "absolute",
-                top: "16px",
-                right: "16px",
-                background: "none",
-                border: "none",
-                fontSize: "1.4rem",
-                cursor: "pointer",
-                zIndex: 10,
-                color: "#111",
-                lineHeight: 1,
-              }}
+              style={{ position: "absolute", top: "16px", right: "16px", background: "none", border: "none", fontSize: "1.4rem", cursor: "pointer", zIndex: 10, color: "#111", lineHeight: 1 }}
             >
               ✕
             </button>
 
             {/* Image */}
             <div style={{ overflow: "hidden" }}>
-              <img
-                src={selected.image}
-                alt={selected.name}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
+              <img src={selected.image} alt={selected.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
 
             {/* Details */}
-            <div style={{
-              padding: "40px 36px",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              overflowY: "auto",
-              background: "#fff",
-            }}>
-              <p style={{
-                fontSize: "0.65rem",
-                letterSpacing: "3px",
-                color: "#aaa",
-                textTransform: "uppercase",
-                marginBottom: "10px",
-              }}>
+            <div style={{ padding: "40px 36px", display: "flex", flexDirection: "column", justifyContent: "center", overflowY: "auto", background: "#fff" }}>
+              <p style={{ fontSize: "0.65rem", letterSpacing: "3px", color: "#aaa", textTransform: "uppercase", marginBottom: "10px" }}>
                 {selected.category}
               </p>
 
-              <h2 style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: "1.8rem",
-                fontWeight: 400,
-                letterSpacing: "-0.02em",
-                marginBottom: "10px",
-                lineHeight: 1.2,
-              }}>
+              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.8rem", fontWeight: 400, letterSpacing: "-0.02em", marginBottom: "10px", lineHeight: 1.2 }}>
                 {selected.name}
               </h2>
 
@@ -306,13 +211,7 @@ export default function HoodiesPage() {
 
               {/* Colors */}
               <div style={{ marginBottom: "20px" }}>
-                <p style={{
-                  fontSize: "0.7rem",
-                  letterSpacing: "2px",
-                  textTransform: "uppercase",
-                  marginBottom: "10px",
-                  color: "#555",
-                }}>
+                <p style={{ fontSize: "0.7rem", letterSpacing: "2px", textTransform: "uppercase", marginBottom: "10px", color: "#555" }}>
                   Color: <span style={{ color: "#111", fontWeight: 600 }}>{selectedColor || "Select"}</span>
                 </p>
                 <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
@@ -323,11 +222,8 @@ export default function HoodiesPage() {
                       style={{
                         padding: "6px 14px",
                         border: selectedColor === color ? "1.5px solid #111" : "1px solid #ddd",
-                        background: "none",
-                        fontSize: "0.75rem",
-                        cursor: "pointer",
-                        letterSpacing: "1px",
-                        fontWeight: selectedColor === color ? 600 : 400,
+                        background: "none", fontSize: "0.75rem", cursor: "pointer",
+                        letterSpacing: "1px", fontWeight: selectedColor === color ? 600 : 400,
                       }}
                     >
                       {color}
@@ -337,14 +233,8 @@ export default function HoodiesPage() {
               </div>
 
               {/* Sizes */}
-              <div style={{ marginBottom: "28px" }}>
-                <p style={{
-                  fontSize: "0.7rem",
-                  letterSpacing: "2px",
-                  textTransform: "uppercase",
-                  marginBottom: "10px",
-                  color: "#555",
-                }}>
+              <div style={{ marginBottom: "16px" }}>
+                <p style={{ fontSize: "0.7rem", letterSpacing: "2px", textTransform: "uppercase", marginBottom: "10px", color: "#555" }}>
                   Size: <span style={{ color: "#111", fontWeight: 600 }}>{selectedSize || "Select"}</span>
                 </p>
                 <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
@@ -353,14 +243,11 @@ export default function HoodiesPage() {
                       key={size}
                       onClick={() => setSelectedSize(size)}
                       style={{
-                        width: "42px",
-                        height: "42px",
+                        width: "42px", height: "42px",
                         border: selectedSize === size ? "1.5px solid #111" : "1px solid #ddd",
                         background: selectedSize === size ? "#111" : "none",
                         color: selectedSize === size ? "#fff" : "#111",
-                        fontSize: "0.75rem",
-                        cursor: "pointer",
-                        fontWeight: 500,
+                        fontSize: "0.75rem", cursor: "pointer", fontWeight: 500,
                       }}
                     >
                       {size}
@@ -369,21 +256,37 @@ export default function HoodiesPage() {
                 </div>
               </div>
 
+              {/* Validation hint */}
+              {!bothSelected && (
+                <p style={{ fontSize: "0.72rem", color: "#e00", marginBottom: "12px", letterSpacing: "0.5px" }}>
+                  Please select a size and color.
+                </p>
+              )}
+
               {/* Add to Cart */}
-              <button style={{
-                background: "#111",
-                color: "#fff",
-                border: "none",
-                padding: "16px",
-                fontSize: "0.75rem",
-                letterSpacing: "2.5px",
-                textTransform: "uppercase",
-                cursor: "pointer",
-                fontWeight: 600,
-                width: "100%",
-              }}>
-                Add to Cart
-              </button>
+              {bothSelected ? (
+                <AddToCart
+                  product={{
+                    id: String(selected.id),
+                    name: selected.name,
+                    price: selected.price,
+                    image: selected.image,
+                    size: selectedSize,
+                    color: selectedColor,
+                  }}
+                />
+              ) : (
+                <button
+                  disabled
+                  style={{
+                    background: "#ccc", color: "#fff", border: "none", padding: "16px",
+                    fontSize: "0.75rem", letterSpacing: "2.5px", textTransform: "uppercase",
+                    cursor: "not-allowed", fontWeight: 600, width: "100%",
+                  }}
+                >
+                  Add to Cart
+                </button>
+              )}
             </div>
           </div>
         </div>

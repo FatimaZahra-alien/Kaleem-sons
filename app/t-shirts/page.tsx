@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import AddToCart from "@/components/AddToCart"
 
 const products = [
   {
@@ -82,6 +83,8 @@ export default function TShirtsPage() {
     setSelected(null)
   }
 
+  const bothSelected = selectedSize !== "" && selectedColor !== ""
+
   return (
     <>
       <main style={{
@@ -127,7 +130,6 @@ export default function TShirtsPage() {
               style={{ cursor: "pointer" }}
               className="product-card"
             >
-              {/* Image */}
               <div style={{
                 width: "100%",
                 aspectRatio: "3/4",
@@ -170,7 +172,6 @@ export default function TShirtsPage() {
                 </div>
               </div>
 
-              {/* Info */}
               <div style={{ paddingTop: "14px" }}>
                 <p style={{ fontSize: "0.65rem", letterSpacing: "2px", color: "#aaa", textTransform: "uppercase", marginBottom: "4px" }}>
                   {product.category}
@@ -304,7 +305,7 @@ export default function TShirtsPage() {
               </div>
 
               {/* Sizes */}
-              <div style={{ marginBottom: "28px" }}>
+              <div style={{ marginBottom: "16px" }}>
                 <p style={{ fontSize: "0.7rem", letterSpacing: "2px", textTransform: "uppercase", marginBottom: "10px", color: "#555" }}>
                   Size: <span style={{ color: "#111", fontWeight: 600 }}>{selectedSize || "Select"}</span>
                 </p>
@@ -330,21 +331,44 @@ export default function TShirtsPage() {
                 </div>
               </div>
 
+              {/* Validation hint */}
+              {!bothSelected && (
+                <p style={{ fontSize: "0.72rem", color: "#e00", marginBottom: "12px", letterSpacing: "0.5px" }}>
+                  Please select a size and color.
+                </p>
+              )}
+
               {/* Add to Cart */}
-              <button style={{
-                background: "#111",
-                color: "#fff",
-                border: "none",
-                padding: "16px",
-                fontSize: "0.75rem",
-                letterSpacing: "2.5px",
-                textTransform: "uppercase",
-                cursor: "pointer",
-                fontWeight: 600,
-                width: "100%",
-              }}>
-                Add to Cart
-              </button>
+              {bothSelected ? (
+                <AddToCart
+                  product={{
+                    id: String(selected.id),
+                    name: selected.name,
+                    price: selected.price,
+                    image: selected.image,
+                    size: selectedSize,
+                    color: selectedColor,
+                  }}
+                />
+              ) : (
+                <button
+                  disabled
+                  style={{
+                    background: "#ccc",
+                    color: "#fff",
+                    border: "none",
+                    padding: "16px",
+                    fontSize: "0.75rem",
+                    letterSpacing: "2.5px",
+                    textTransform: "uppercase",
+                    cursor: "not-allowed",
+                    fontWeight: 600,
+                    width: "100%",
+                  }}
+                >
+                  Add to Cart
+                </button>
+              )}
             </div>
           </div>
         </div>
