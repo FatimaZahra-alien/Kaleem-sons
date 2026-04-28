@@ -65,7 +65,7 @@ export default function Footer() {
         fontFamily: "'Montserrat', sans-serif",
         fontWeight: 800,
         fontSize: "1.2rem",
-        color: "#fff",                    // Changed to white
+        color: "#fff",
         letterSpacing: "2px",
         marginBottom: "0.3rem",
       }}>
@@ -73,58 +73,13 @@ export default function Footer() {
       </p>
       <p style={{
         fontSize: "0.72rem",
-        color: "#fff",                    // Changed to white
+        color: "#fff",
         letterSpacing: "1.5px",
         marginBottom: "1.6rem",
         textTransform: "uppercase",
       }}>
         Crafted for Modern Men
       </p>
-
-      {/* Nav links */}
-      <div style={{
-        display: "flex",
-        justifyContent: "center",
-        flexWrap: "wrap",
-        gap: "6px 20px",
-        marginBottom: "1.6rem",
-      }}>
-        {links.map((link) => (
-          <a
-            key={link.label}
-            href={link.href}
-            style={{
-              color: "#fff",                 // Changed to white
-              fontSize: "0.75rem",
-              textDecoration: "none",
-              letterSpacing: "0.5px",
-              textTransform: "uppercase",
-              transition: "color 0.2s, text-decoration 0.2s",
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.color = "#fff";
-              e.currentTarget.style.textDecoration = "underline";
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.color = "#fff";
-              e.currentTarget.style.textDecoration = "none";
-            }}
-            onMouseDown={e => {              // Underline when clicked
-              e.currentTarget.style.textDecoration = "underline";
-            }}
-          >
-            {link.label}
-          </a>
-        ))}
-      </div>
-
-      {/* Divider */}
-      <div style={{
-        width: "40px",
-        height: "1px",
-        background: "rgba(190,145,95,0.25)",
-        margin: "0 auto 1.6rem",
-      }} />
 
       {/* Social icons */}
       <div style={{
@@ -141,7 +96,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             aria-label={s.label}
             style={{
-              color: "#fff",                 // Changed to white
+              color: "#fff",
               display: "flex",
               alignItems: "center",
               transition: "color 0.2s, transform 0.2s",
@@ -160,10 +115,55 @@ export default function Footer() {
         ))}
       </div>
 
+      {/* Divider */}
+      <div style={{
+        width: "40px",
+        height: "1px",
+        background: "rgba(190,145,95,0.25)",
+        margin: "0 auto 1.6rem",
+      }} />
+
+      {/* Nav links */}
+      <div style={{
+        display: "flex",
+        justifyContent: "center",
+        flexWrap: "wrap",
+        gap: "6px 20px",
+        marginBottom: "1.6rem",
+      }}>
+        {links.map((link) => (
+          <a
+            key={link.label}
+            href={link.href}
+            style={{
+              color: "#fff",
+              fontSize: "0.75rem",
+              textDecoration: "none",
+              letterSpacing: "0.5px",
+              textTransform: "uppercase",
+              transition: "color 0.2s, text-decoration 0.2s",
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.color = "#fff";
+              e.currentTarget.style.textDecoration = "underline";
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.color = "#fff";
+              e.currentTarget.style.textDecoration = "none";
+            }}
+            onMouseDown={e => {
+              e.currentTarget.style.textDecoration = "underline";
+            }}
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+
       {/* Copyright */}
       <p style={{
         fontSize: "0.7rem",
-        color: "#fff",                     // Changed to white
+        color: "#fff",
         letterSpacing: "0.5px",
       }}>
         © 2026 Kaleem Sons. All rights reserved.
