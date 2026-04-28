@@ -38,7 +38,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const [pendingItem, setPendingItem] = useState<CartItem | null>(null)
 
-  // Load cart from Supabase when user logs in
   useEffect(() => {
     if (session?.user?.id) {
       loadCart(session.user.id)
@@ -60,7 +59,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         price: item.price,
         image: item.image,
         size: item.size,
-        color:item.color,
+        color: item.color ?? "",   // ← safe fallback for existing rows without color
         quantity: item.quantity,
       })))
     }
@@ -81,7 +80,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
     setIsCartOpen(true)
 
-    // Sync to Supabase
     if (session?.user?.id) {
       await supabase.from("cart_items").upsert({
         user_id: session.user.id,
@@ -90,6 +88,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         price: item.price,
         image: item.image,
         size: item.size,
+        color: item.color,        // ← was missing, now included
         quantity: item.quantity,
       }, { onConflict: "user_id,product_id,size" })
     }
