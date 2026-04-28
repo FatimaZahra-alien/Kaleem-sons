@@ -52,6 +52,7 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
       price: product.price,
       image: product.img,
       size: selectedSize,
+       color: selectedColor,
       quantity: 1,
     }
     if (!session) {
