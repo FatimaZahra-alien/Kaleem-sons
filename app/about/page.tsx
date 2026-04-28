@@ -1,127 +1,266 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
+import { useState, useEffect } from "react";
+
+const products = [
+  "Oversize Tees",
+  "Full Compression Shirts",
+  "Half Compression Shirts",
+  "Tank Tops & Vests",
+  "Training Shorts",
+  "Bottoms",
+  "Accessories",
+];
+
+const reasons = [
+  { title: "Premium Quality", desc: "Sports wear and fitness clothing built to last through every session." },
+  { title: "Performance First", desc: "Designed for training, workouts, and bodybuilding with a strong focus on fit and durability." },
+  { title: "Sialkot Crafted", desc: "Made in Sialkot, the global capital of sports manufacturing, Pakistan." },
+  { title: "Trusted Brand", desc: "A reliable Pakistani activewear and gym apparel brand growing with the fitness community." },
+];
 
 export default function AboutPage() {
-  return (
-    <div className="bg-white text-[#1F1F1F]">
+  const [visible, setVisible] = useState(false);
 
-      {/* Page Header */}
-      <section className="pt-16 pb-2 px-6 md:px-12 lg:px-20 xl:px-32">
-        <div className="container mx-auto px-6">
-          <h1 className="text-5xl md:text-5xl font-bold ">
-            About Kaleem Sons
+  useEffect(() => {
+    const timer = setTimeout(() => setVisible(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div style={{ minHeight: "100vh", background: "#fff", fontFamily: "DM Sans, sans-serif", overflowX: "hidden" }}>
+      <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet" />
+      <style dangerouslySetInnerHTML={{ __html: `
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        .about-fade { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .about-fade.visible { opacity: 1; transform: translateY(0); }
+        .hero-title { font-size: clamp(52px, 14vw, 140px); }
+        .hero-sub { font-size: clamp(52px, 14vw, 140px); }
+        .section-pad { padding: 64px 24px; }
+        .vision-grid { display: block; }
+        .reasons-grid { display: grid; grid-template-columns: 1fr; gap: 1px; }
+        .products-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; }
+        .contact-grid { display: block; }
+        .founder-layout { display: block; }
+        .founder-text { padding: 32px 24px; }
+        .founder-badge { padding: 32px 24px; }
+        @media (min-width: 640px) {
+          .section-pad { padding: 80px 40px; }
+          .reasons-grid { grid-template-columns: 1fr 1fr; }
+          .products-grid { grid-template-columns: 1fr 1fr 1fr; }
+        }
+        @media (min-width: 900px) {
+          .section-pad { padding: 100px 80px; }
+          .vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+          .reasons-grid { grid-template-columns: 1fr 1fr; }
+          .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+          .founder-layout { display: grid; grid-template-columns: 1fr 1fr; }
+          .founder-text { padding: 64px 56px; }
+          .founder-badge { padding: 64px 56px; }
+        }
+        .product-item { padding: 20px; border: 1px solid #e8e8e8; transition: background 0.2s ease, color 0.2s ease; cursor: default; }
+        .product-item:hover { background: #000; color: #fff; }
+        .contact-link { color: #000; text-decoration: underline; text-underline-offset: 3px; font-weight: 500; word-break: break-all; }
+        .contact-link:hover { opacity: 0.6; }
+        .social-btn { display: inline-block; padding: 10px 20px; border: 1.5px solid #000; font-family: DM Sans, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: #000; transition: background 0.2s ease, color 0.2s ease; margin-right: 10px; margin-top: 10px; }
+        .social-btn:hover { background: #000; color: #fff; }
+      ` }} />
+
+      {/* Hero */}
+      <div style={{ borderBottom: "1px solid #e5e5e5", padding: "80px 24px 60px", position: "relative", overflow: "hidden" }}>
+        <div className={`about-fade ${visible ? "visible" : ""}`} style={{ transitionDelay: "0s" }}>
+          <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#aaa", marginBottom: "20px", fontWeight: 500 }}>
+            Est. Sialkot, Pakistan
+          </p>
+        </div>
+        <div className={`about-fade ${visible ? "visible" : ""}`} style={{ transitionDelay: "0.1s" }}>
+          <h1 className="hero-title" style={{ fontFamily: "Bebas Neue, sans-serif", lineHeight: 0.88, letterSpacing: "0.03em", color: "#000" }}>
+            KALEEM
+            <br />
+            <span style={{ WebkitTextStroke: "2px #000", color: "transparent" }}>SONS</span>
           </h1>
         </div>
-      </section>
-
-      {/* Main Content - Very Centered with Lots of Side Space */}
-      <section className="container mx-auto pt-2 pb-8 px-6 md:px-12 lg:px-20 xl:px-32">
-        <div className="max-w-4xl">   {/* ← Narrower for more left/right space */}
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="divide-y divide-gray-200  text-[17px] leading-loose text-[#333]"
-          >
-
-            {/* Introduction */}
-            <div className="pt-4 pb-8">
-              <p>
-                Kaleem Sons is a premium gym and fitness clothing brand in Pakistan, proudly based in 
-                Sialkot, a city globally recognized for sports and athletic manufacturing.
-              </p>
-              <p>
-                Kaleem Sons was founded and is owned by <strong>Baseer Kaleem </strong>
-                with a mission to provide high-performance gym wear that combines strength, comfort, 
-                and modern athletic style.
-              </p>
-              <p>
-                At Kaleem Sons, we design and manufacture men’s gym clothing and fitness apparel built for 
-                intense workouts, bodybuilding, training, and everyday active lifestyles. Every product 
-                reflects durability, flexibility, and a powerful fit that supports peak performance in the gym.
-              </p>
-            </div>
-
-            {/* Our Vision */}
-            <div className="pt-8 pb-8">
-              <h2 className="text-4xl font-semibold pt-8">Our Vision</h2>
-              <p>
-                Our vision is to become a leading gym clothing brand in Pakistan, delivering premium 
-                workout wear and activewear that meets international quality standards while representing 
-                Pakistan’s growing fitness culture.
-              </p>
-            </div>
-
-            {/* Our Product Range */}
-            <div className="pt-8 pb-8">
-              <h2 className="text-4xl font-semibold pt-8">Our Product Range</h2>
-              <p>Kaleem Sons offers a complete range of gym and fitness apparel in Pakistan, including:</p>
-              
-              <ul className="list-disc pl-6 space-y-2.5">
-                <li>Oversize Tees for modern gym style</li>
-                <li>Full Compression Shirts for maximum muscle support</li>
-                <li>Half Compression Shirts for balanced performance</li>
-                <li>Tank Tops and Vests for intense training sessions</li>
-                <li>Training Shorts designed for mobility and comfort</li>
-                <li>Bottoms for workouts and daily activewear</li>
-                <li>Accessories to complete your gym look</li>
-              </ul>
-
-              <p className="pt-8 pb-8">
-                All our products are designed to support workout training, bodybuilding, and fitness routines, 
-                making Kaleem Sons a trusted sports wear brand in Pakistan.
-              </p>
-            </div>
-
-            {/* Why Choose Kaleem sons */}
-            <div className="pt-8 pb-8">
-              <h2 className="text-4xl font-semibold pt-8">Why Choose Kaleem Sons?</h2>
-              <ul className="list-disc pl-6 space-y-2.5">
-                <li>Premium quality sports wear and fitness clothing</li>
-                <li>Designed for training, workouts, and bodybuilding</li>
-                <li>Strong focus on performance, durability, and fit</li>
-                <li>Based in Sialkot, Pakistan</li>
-                <li>Trusted Pakistani activewear and gym apparel brand</li>
-              </ul>
-            </div>
-
-            {/* Founder & Ownership */}
-            <div className="pt-8 pb-8">
-              <h2 className="text-4xl font-semibold pt-8">Founder & Ownership</h2>
-              <p>
-                Kaleem Sons was founded and is owned by Mohammad Baseer Bin kaleem, a Pakistani entrepreneur passionate 
-                about fitness and athletic fashion. Under his leadership, Kaleem Sons continues to grow as 
-                a reliable fitness clothing and gym wear brand in Pakistan.
-              </p>
-            </div>
-
-            {/* Our Commitment */}
-            <div className="pt-8 pb-8">
-              <h2 className="text-4xl font-semibold pt-8">Our Commitment</h2>
-              <p>
-                We are committed to delivering premium gym wear in Pakistan that motivates athletes to 
-                push beyond limits. From fabric selection to final stitching, every detail is crafted 
-                to ensure long-lasting quality and comfort.
-              </p>
-            </div>
-
-            {/* Contact */}
-            <div className="space-y-4 pt-8 border-t">
-              <h2 className="text-4xl font-semibold">Contact & Connect With Us</h2>
-              <div className="space-y-3">
-                <p><strong>Location:</strong> Sialkot, Pakistan</p>
-                <p><strong>Contact:</strong> +92 326 5546 298</p>
-                <p><strong>Email:</strong> baseerbutt444@gmail.com</p>
-                <p><strong>Instagram:</strong> @Kaleem&sons</p>
-                <p><strong>Facebook:</strong> Kaleemsons</p>
-                <p><strong>Website:</strong> https://KaleemSons.vercel.app</p>
-              </div>
-            </div>
-
-          </motion.div>
+        <div className={`about-fade ${visible ? "visible" : ""}`} style={{ transitionDelay: "0.2s", marginTop: "32px", maxWidth: "520px" }}>
+          <p style={{ fontSize: "15px", color: "#555", lineHeight: 1.8, fontWeight: 400 }}>
+            Premium gym and fitness clothing from Sialkot, Pakistan. Built for athletes who train hard and demand more from their gear.
+          </p>
         </div>
-      </section>
+        <div className={`about-fade ${visible ? "visible" : ""}`} style={{ transitionDelay: "0.3s", marginTop: "40px" }}>
+          <div style={{ width: "60px", height: "3px", background: "#000" }} />
+        </div>
+        {/* Watermark */}
+        <div style={{ position: "absolute", right: "-20px", bottom: "-20px", fontFamily: "Bebas Neue, sans-serif", fontSize: "clamp(80px, 20vw, 220px)", color: "#f0f0f0", lineHeight: 1, pointerEvents: "none", userSelect: "none", letterSpacing: "0.02em" }}>
+          KS
+        </div>
+      </div>
+
+      {/* Who We Are */}
+      <div className="section-pad" style={{ borderBottom: "1px solid #e5e5e5" }}>
+        <div className="vision-grid">
+          <div>
+            <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#aaa", marginBottom: "16px", fontWeight: 500 }}>
+              Who We Are
+            </p>
+            <h2 style={{ fontFamily: "Bebas Neue, sans-serif", fontSize: "clamp(36px, 6vw, 64px)", letterSpacing: "0.04em", color: "#000", lineHeight: 1, marginBottom: "32px" }}>
+              ABOUT
+              <br />
+              KALEEM SONS
+            </h2>
+            <div style={{ width: "40px", height: "2px", background: "#000", marginBottom: "32px" }} />
+          </div>
+          <div>
+            <p style={{ fontSize: "15px", color: "#444", lineHeight: 1.9, marginBottom: "20px" }}>
+              Kaleem Sons is a premium gym and fitness clothing brand in Pakistan, proudly based in Sialkot — a city globally recognized for sports and athletic manufacturing excellence.
+            </p>
+            <p style={{ fontSize: "15px", color: "#444", lineHeight: 1.9, marginBottom: "20px" }}>
+              Founded and owned by Mohammad Baseer Bin Kaleem, our mission is to provide high-performance gym wear that combines strength, comfort, and modern athletic style.
+            </p>
+            <p style={{ fontSize: "15px", color: "#444", lineHeight: 1.9 }}>
+              Every product reflects durability, flexibility, and a powerful fit that supports peak performance — whether you are in the gym, on the track, or living an active lifestyle.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Vision */}
+      <div style={{ background: "#000", padding: "0" }}>
+        <div className="section-pad">
+          <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#666", marginBottom: "16px", fontWeight: 500 }}>
+            Our Vision
+          </p>
+          <h2 style={{ fontFamily: "Bebas Neue, sans-serif", fontSize: "clamp(28px, 5vw, 52px)", letterSpacing: "0.04em", color: "#fff", lineHeight: 1.1, maxWidth: "800px" }}>
+            TO BECOME A LEADING GYM CLOTHING BRAND IN PAKISTAN, DELIVERING PREMIUM WORKOUT WEAR THAT MEETS INTERNATIONAL QUALITY STANDARDS.
+          </h2>
+          <div style={{ marginTop: "32px", display: "flex", alignItems: "center", gap: "16px" }}>
+            <div style={{ width: "40px", height: "1px", background: "#444" }} />
+            <p style={{ fontSize: "13px", color: "#666", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+              Representing Pakistan's Growing Fitness Culture
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Products */}
+      <div className="section-pad" style={{ borderBottom: "1px solid #e5e5e5" }}>
+        <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#aaa", marginBottom: "16px", fontWeight: 500 }}>
+          What We Make
+        </p>
+        <h2 style={{ fontFamily: "Bebas Neue, sans-serif", fontSize: "clamp(36px, 6vw, 64px)", letterSpacing: "0.04em", color: "#000", lineHeight: 1, marginBottom: "8px" }}>
+          OUR PRODUCT RANGE
+        </h2>
+        <p style={{ fontSize: "14px", color: "#888", marginBottom: "40px", lineHeight: 1.6 }}>
+          A complete range of gym and fitness apparel designed for intense training.
+        </p>
+        <div className="products-grid">
+          {products.map((p, i) => (
+            <div key={i} className="product-item">
+              <span style={{ fontFamily: "Bebas Neue, sans-serif", fontSize: "11px", letterSpacing: "0.15em", color: "#bbb", display: "block", marginBottom: "6px" }}>
+                0{i + 1}
+              </span>
+              <span style={{ fontFamily: "DM Sans, sans-serif", fontSize: "14px", fontWeight: 500, lineHeight: 1.4 }}>
+                {p}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Why Choose Us */}
+      <div className="section-pad" style={{ borderBottom: "1px solid #e5e5e5", background: "#fafafa" }}>
+        <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#aaa", marginBottom: "16px", fontWeight: 500 }}>
+          Why Us
+        </p>
+        <h2 style={{ fontFamily: "Bebas Neue, sans-serif", fontSize: "clamp(36px, 6vw, 64px)", letterSpacing: "0.04em", color: "#000", lineHeight: 1, marginBottom: "48px" }}>
+          WHY CHOOSE
+          <br />
+          KALEEM SONS
+        </h2>
+        <div className="reasons-grid">
+          {reasons.map((r, i) => (
+            <div key={i} style={{ padding: "32px", border: "1px solid #e5e5e5", background: "#fff" }}>
+              <div style={{ width: "32px", height: "32px", background: "#000", borderRadius: "2px", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "20px" }}>
+                <span style={{ fontFamily: "Bebas Neue, sans-serif", fontSize: "14px", color: "#fff", letterSpacing: "0.05em" }}>
+                  0{i + 1}
+                </span>
+              </div>
+              <h3 style={{ fontFamily: "Bebas Neue, sans-serif", fontSize: "22px", letterSpacing: "0.06em", color: "#000", marginBottom: "12px" }}>
+                {r.title}
+              </h3>
+              <p style={{ fontSize: "14px", color: "#666", lineHeight: 1.75 }}>
+                {r.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Founder */}
+      <div style={{ borderBottom: "1px solid #e5e5e5" }}>
+        <div className="founder-layout">
+          <div className="founder-text" style={{ background: "#fff" }}>
+            <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#aaa", marginBottom: "16px", fontWeight: 500 }}>
+              Leadership
+            </p>
+            <h2 style={{ fontFamily: "Bebas Neue, sans-serif", fontSize: "clamp(32px, 5vw, 56px)", letterSpacing: "0.04em", color: "#000", lineHeight: 1.05, marginBottom: "28px" }}>
+              FOUNDER
+              <br />
+              AND OWNER
+            </h2>
+            <div style={{ width: "40px", height: "2px", background: "#000", marginBottom: "28px" }} />
+            <p style={{ fontSize: "15px", color: "#444", lineHeight: 1.9, marginBottom: "16px" }}>
+              Kaleem Sons was founded and is owned by <strong style={{ color: "#000" }}>Mohammad Baseer Bin Kaleem</strong>, a Pakistani entrepreneur passionate about fitness and athletic fashion.
+            </p>
+            <p style={{ fontSize: "15px", color: "#444", lineHeight: 1.9 }}>
+              Under his leadership, Kaleem Sons continues to grow as a reliable fitness clothing and gym wear brand in Pakistan, inspiring athletes to push beyond their limits.
+            </p>
+          </div>
+          <div className="founder-badge" style={{ background: "#000", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#555", marginBottom: "20px", fontWeight: 500 }}>
+              Our Commitment
+            </p>
+            <p style={{ fontFamily: "Bebas Neue, sans-serif", fontSize: "clamp(22px, 3.5vw, 34px)", color: "#fff", lineHeight: 1.3, letterSpacing: "0.04em", marginBottom: "28px" }}>
+              FROM FABRIC SELECTION TO FINAL STITCHING, EVERY DETAIL IS CRAFTED FOR LONG-LASTING QUALITY AND COMFORT.
+            </p>
+            <div style={{ width: "40px", height: "1px", background: "#333" }} />
+          </div>
+        </div>
+      </div>
+
+      {/* Contact */}
+      <div className="section-pad">
+        <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#aaa", marginBottom: "16px", fontWeight: 500 }}>
+          Get In Touch
+        </p>
+        <h2 style={{ fontFamily: "Bebas Neue, sans-serif", fontSize: "clamp(36px, 6vw, 64px)", letterSpacing: "0.04em", color: "#000", lineHeight: 1, marginBottom: "48px" }}>
+          CONTACT
+          <br />
+          AND CONNECT
+        </h2>
+        <div className="contact-grid">
+          <div style={{ marginBottom: "40px" }}>
+            {[
+              { label: "Location", value: "Sialkot, Pakistan", href: null },
+              { label: "Phone", value: "+92 326 5546 298", href: "tel:+923265546298" },
+              { label: "Email", value: "baseerbutt444@gmail.com", href: "mailto:baseerbutt444@gmail.com" },
+              { label: "Website", value: "KaleemSons.vercel.app", href: "https://KaleemSons.vercel.app" },
+            ].map((item) => (
+              <div key={item.label} style={{ paddingBottom: "24px", marginBottom: "24px", borderBottom: "1px solid #e5e5e5" }}>
+                <p style={{ fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase", color: "#aaa", marginBottom: "6px", fontWeight: 500 }}>
+                  {item.label}
+                </p>
+                {item.href ? (
+                  <a href={item.href} className="contact-link" style={{ fontSize: "15px" }}>
+                    {item.value}
+                  </a>
+                ) : (
+                  <p style={{ fontSize: "15px", color: "#000", fontWeight: 500 }}>{item.value}</p>
+                )}
+              </div>
+            ))}
+          </div>
+          
+        </div>
+      </div>
     </div>
   );
 }

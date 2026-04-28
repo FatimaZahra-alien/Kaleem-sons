@@ -11,11 +11,9 @@ export default function Header() {
 
   const navLinks = [
     { href: "/new-in", label: "New In" },
-    { href: "/t-shirts", label: "T-Shirts" },
-    { href: "/hoodies", label: "Hoodies" },
-    { href: "/track-suits", label: "Track Suits" },
-    { href: "/karate", label: "Karate" },
-    { href: "/jiu-jitsu", label: "Jiu Jitsu" },
+    { href: "/track-suits", label: " Suits" },
+    { href: "/karate", label: "Casuals" },
+    { href: "/shop", label: "Shop All" },
   ]
 
   return (

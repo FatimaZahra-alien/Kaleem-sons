@@ -4,7 +4,7 @@ export default function Footer() {
   const links = [
     { label: "About Us", href: "/about" },
     { label: "Contact", href: "/contact" },
-    { label: "Returns", href: "/returns" },
+    { label: "Returns", href: "/return" },
     { label: "Privacy Policy", href: "/privacypolicy" },
     { label: "FAQ", href: "/faq" },
   ];
