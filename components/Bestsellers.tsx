@@ -53,7 +53,7 @@ export default function Bestsellers() {
         }
         .bs-card {
           background: white;
-          border-radius: 16px;
+          border-radius: 0px;
           box-shadow: 0 8px 14px -6px rgba(0,0,0,0.08);
           padding-bottom: 16px;
           text-align: center;
@@ -66,7 +66,7 @@ export default function Bestsellers() {
           aspect-ratio: 3 / 4;
           width: 100%;
           overflow: hidden;
-          border-radius: 16px 16px 0 0;
+          border-radius:0px 0px 0 0;
         }
         .bs-badge {
           position: absolute;

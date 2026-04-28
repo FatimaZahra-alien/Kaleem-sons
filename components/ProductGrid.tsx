@@ -230,7 +230,8 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        borderRadius: "16px", overflow: "hidden",
+        borderRadius: "0",
+        overflow: "hidden",
         cursor: "pointer", position: "relative", aspectRatio: "3/4",
         boxShadow: hovered
           ? "0 20px 40px -10px rgba(0,0,0,0.22)"
@@ -317,15 +318,7 @@ export default function ProductGrid() {
           -webkit-text-stroke: 1.5px #111;
         }
 
-        .pg-new-arrivals::after {
-          content: '';
-          display: block;
-          margin: 8px auto 0;
-          height: 5px;
-          width: 60%;
-          background: #111;
-          border-radius: 3px;
-        }
+       
 
         .pg-grid {
           display: grid;
@@ -335,7 +328,6 @@ export default function ProductGrid() {
           margin: 0 auto;
         }
 
-        /* tablet */
         @media (max-width: 900px) {
           .pg-section { padding: 48px 16px; }
           .pg-heading-wrapper { margin-bottom: 24px; }
@@ -345,7 +337,6 @@ export default function ProductGrid() {
           }
         }
 
-        /* mobile — 2 columns × 4 rows */
         @media (max-width: 480px) {
           .pg-section { padding: 40px 16px; }
           .pg-heading-wrapper { margin-bottom: 20px; }
@@ -353,17 +344,13 @@ export default function ProductGrid() {
             font-size: clamp(2.4rem, 11vw, 3.2rem);
             -webkit-text-stroke: 1px #111;
           }
-          .pg-new-arrivals::after {
-            width: 50%;
-            height: 4px;
-          }
+        
           .pg-grid {
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
           }
         }
 
-        /* large desktop */
         @media (min-width: 1000px) {
           .pg-section { padding: 80px 24px; }
           .pg-heading-wrapper { margin-bottom: 48px; }
@@ -376,7 +363,7 @@ export default function ProductGrid() {
 
       <section className="pg-section">
         <div className="pg-heading-wrapper">
-          <h2 className="pg-new-arrivals">THE NEW ARIVALS</h2>
+          <h2 className="pg-new-arrivals">THE NEW ARRIVALS</h2>
         </div>
 
         <div className="pg-grid">

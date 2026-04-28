@@ -90,7 +90,7 @@ export default function Slider() {
         .circle-slider {
           position: relative;
           width: 420px;
-          height: 520px;
+          height: 560px;
         }
 
         .slide-stack {
@@ -104,7 +104,7 @@ export default function Slider() {
           width: 100%;
           height: 100%;
           transition: all 0.4s ease;
-          border-radius: 18px;
+          border-radius: 0px;
           overflow: hidden;
         }
 

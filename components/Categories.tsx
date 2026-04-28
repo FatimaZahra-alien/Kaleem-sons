@@ -59,11 +59,11 @@ export default function Categories() {
   return (
     <section className="bg-white py-16 px-4">
       {/* Heading */}
-      <div className="text-center mb-12">
+     <div className="text-center" style={{ marginBottom: "50px" }}>
         <p className="text-black text-[11px] tracking-[4px] uppercase font-bold mb-2 ">
           Browse by Category
         </p>
-        <div className="mx-auto mt-4 h-[2px] w-16 bg-black/20" />
+      
       </div>
 
       {/* Circles */}
