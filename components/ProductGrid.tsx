@@ -10,13 +10,14 @@ const products = [
   { id: "4", img: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80", name: "Archive Graphic", desc: "Limited run, screen printed artwork.", price: 79, colors: ["#E8E0D5", "#111111", "#8B7355"] },
   { id: "5", img: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&q=80", name: "Ecru Pigment Dyed", desc: "Garment washed, soft hand-feel.", price: 74, colors: ["#F0EAD6", "#D4C5A9", "#A89880"] },
   { id: "6", img: "https://images.unsplash.com/photo-1603344797033-f0f4f587ab60?w=600&q=80", name: "Navy Split Logo", desc: "Embossed print, heavyweight fabric.", price: 77, colors: ["#1B2A4A", "#2C3E6B", "#4A5B80"] },
+  { id: "7", img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80", name: "Volt Runner", desc: "Engineered knit, responsive cushioning.", price: 95, colors: ["#E8FF00", "#111111", "#444444"] },
+  { id: "8", img: "https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=600&q=80", name: "Slate Core Zip", desc: "Quarter-zip fleece, athletic silhouette.", price: 84, colors: ["#6B7280", "#374151", "#9CA3AF"] },
 ]
 
 const SIZES = ["XS", "S", "M", "L", "XL"]
 
 type Product = typeof products[0]
 
-/* ── tiny hook to detect mobile ── */
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false)
   useEffect(() => {
@@ -28,9 +29,6 @@ function useIsMobile() {
   return isMobile
 }
 
-/* ══════════════════════════════════════
-   MODAL
-══════════════════════════════════════ */
 function ProductModal({ product, onClose }: { product: Product; onClose: () => void }) {
   const { data: session } = useSession()
   const { addItem, setIsAuthModalOpen, setPendingItem } = useCart()
@@ -39,7 +37,6 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
   const [added, setAdded] = useState(false)
   const isMobile = useIsMobile()
 
-  /* prevent body scroll while modal is open */
   useEffect(() => {
     document.body.style.overflow = "hidden"
     return () => { document.body.style.overflow = "" }
@@ -52,7 +49,7 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
       price: product.price,
       image: product.img,
       size: selectedSize,
-       color: selectedColor,
+      color: selectedColor,
       quantity: 1,
     }
     if (!session) {
@@ -67,7 +64,6 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
   }
 
   return (
-    /* ── Backdrop ── */
     <div
       onClick={onClose}
       style={{
@@ -82,7 +78,6 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
         animation: "pgFadeIn 0.2s ease",
       }}
     >
-      {/* ── Panel ── */}
       <div
         onClick={e => e.stopPropagation()}
         style={{
@@ -101,7 +96,6 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
           position: "relative",
         }}
       >
-        {/* ── Close button ── */}
         <button
           onClick={onClose}
           style={{
@@ -114,7 +108,6 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
           }}
         >✕</button>
 
-        {/* ── Product image ── */}
         <div style={{
           flexShrink: 0,
           width: isMobile ? "100%" : "46%",
@@ -129,7 +122,6 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
           />
         </div>
 
-        {/* ── Details panel ── */}
         <div style={{
           flex: 1,
           padding: isMobile ? "1.1rem 1.2rem 1.8rem" : "2rem 1.8rem",
@@ -138,7 +130,6 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
           gap: isMobile ? "0.75rem" : "1rem",
           overflowY: "auto",
         }}>
-          {/* Name + desc */}
           <div>
             <p style={{ fontSize: "0.62rem", textTransform: "uppercase", letterSpacing: "2px", color: "#aaa", marginBottom: "0.25rem" }}>
               Kaleem Sons
@@ -152,12 +143,10 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
             <p style={{ color: "#777", fontSize: "0.78rem", lineHeight: 1.6 }}>{product.desc}</p>
           </div>
 
-          {/* Price */}
           <div style={{ fontSize: isMobile ? "1.35rem" : "1.6rem", fontWeight: 800, color: "#111", letterSpacing: "-0.5px" }}>
             £{product.price}
           </div>
 
-          {/* Colour */}
           <div>
             <p style={{ fontSize: "0.65rem", textTransform: "uppercase", letterSpacing: "1.5px", color: "#999", marginBottom: "0.4rem" }}>
               Colour
@@ -180,7 +169,6 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
             </div>
           </div>
 
-          {/* Size */}
           <div>
             <p style={{ fontSize: "0.65rem", textTransform: "uppercase", letterSpacing: "1.5px", color: "#999", marginBottom: "0.4rem" }}>
               Size
@@ -205,7 +193,6 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
             </div>
           </div>
 
-          {/* Add to cart */}
           <button
             onClick={handleAddToCart}
             style={{
@@ -234,9 +221,6 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
   )
 }
 
-/* ══════════════════════════════════════
-   CARD
-══════════════════════════════════════ */
 function ProductCard({ product, onClick }: { product: Product; onClick: () => void }) {
   const [hovered, setHovered] = useState(false)
 
@@ -267,7 +251,6 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
         }}
       />
 
-      {/* Gradient overlay: name + price */}
       <div style={{
         position: "absolute", bottom: 0, left: 0, right: 0,
         padding: "2.5rem 0.8rem 0.8rem",
@@ -289,7 +272,6 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
         }}>£{product.price}</span>
       </div>
 
-      {/* Quick View pill — visible on hover (desktop) */}
       <div style={{
         position: "absolute", top: "50%", left: "50%",
         transform: `translate(-50%, -50%) scale(${hovered ? 1 : 0.85})`,
@@ -305,46 +287,104 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
   )
 }
 
-/* ══════════════════════════════════════
-   GRID (replaces the old <section> wrapper)
-   — uses its own responsive CSS via <style> tag
-══════════════════════════════════════ */
 export default function ProductGrid() {
   const [activeProduct, setActiveProduct] = useState<Product | null>(null)
 
   return (
     <>
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+        .pg-section {
+          padding: 64px 24px;
+          background: #ffffff;
+        }
+
+        .pg-heading-wrapper {
+          text-align: center;
+          margin-bottom: 32px;
+        }
+
+        .pg-new-arrivals {
+          font-family: 'Bebas Neue', 'Impact', sans-serif;
+          font-size: clamp(3.2rem, 7vw, 6rem);
+          font-weight: 900;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: #111;
+          line-height: 1;
+          display: inline-block;
+          -webkit-text-stroke: 1.5px #111;
+        }
+
+        .pg-new-arrivals::after {
+          content: '';
+          display: block;
+          margin: 8px auto 0;
+          height: 5px;
+          width: 60%;
+          background: #111;
+          border-radius: 3px;
+        }
+
         .pg-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1rem;
-          padding: 2rem 4% 3rem;
-          background: var(--light);
+          grid-template-columns: repeat(4, 1fr);
+          gap: 24px;
+          max-width: 1280px;
+          margin: 0 auto;
         }
+
         /* tablet */
         @media (max-width: 900px) {
+          .pg-section { padding: 48px 16px; }
+          .pg-heading-wrapper { margin-bottom: 24px; }
           .pg-grid {
             grid-template-columns: repeat(2, 1fr);
-            gap: 0.75rem;
-            padding: 1.2rem 3% 2rem;
+            gap: 16px;
           }
         }
-        /* mobile */
+
+        /* mobile — 2 columns × 4 rows */
         @media (max-width: 480px) {
+          .pg-section { padding: 40px 16px; }
+          .pg-heading-wrapper { margin-bottom: 20px; }
+          .pg-new-arrivals {
+            font-size: clamp(2.4rem, 11vw, 3.2rem);
+            -webkit-text-stroke: 1px #111;
+          }
+          .pg-new-arrivals::after {
+            width: 50%;
+            height: 4px;
+          }
           .pg-grid {
             grid-template-columns: repeat(2, 1fr);
-            gap: 0.5rem;
-            padding: 0.8rem 3% 2rem;
+            gap: 12px;
+          }
+        }
+
+        /* large desktop */
+        @media (min-width: 1000px) {
+          .pg-section { padding: 80px 24px; }
+          .pg-heading-wrapper { margin-bottom: 48px; }
+          .pg-grid {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
           }
         }
       `}</style>
 
-      <div className="pg-grid">
-        {products.map(p => (
-          <ProductCard key={p.id} product={p} onClick={() => setActiveProduct(p)} />
-        ))}
-      </div>
+      <section className="pg-section">
+        <div className="pg-heading-wrapper">
+          <h2 className="pg-new-arrivals">THE NEW ARIVALS</h2>
+        </div>
+
+        <div className="pg-grid">
+          {products.map(p => (
+            <ProductCard key={p.id} product={p} onClick={() => setActiveProduct(p)} />
+          ))}
+        </div>
+      </section>
 
       {activeProduct && (
         <ProductModal product={activeProduct} onClose={() => setActiveProduct(null)} />
