@@ -83,7 +83,34 @@ export default function CartSidebar() {
                 <div className="flex-1 flex flex-col justify-between py-0.5">
                   <div>
                     <p className="text-[0.85rem] font-semibold text-gray-900 leading-snug">{item.name}</p>
-                    <p className="text-[0.72rem] text-gray-400 mt-0.5 tracking-wide uppercase">Size: {item.size}</p>
+
+                    {/* ── Size + Colour row ── */}
+                    <div className="flex items-center gap-2 mt-0.5">
+                      <p className="text-[0.72rem] text-gray-400 tracking-wide uppercase">
+                        Size: {item.size}
+                      </p>
+                      {item.color && (
+                        <>
+                          <span className="text-gray-300 text-[0.65rem]">·</span>
+                          <div className="flex items-center gap-1">
+                            <span
+                              style={{
+                                display: "inline-block",
+                                width: 10,
+                                height: 10,
+                                borderRadius: "50%",
+                                background: item.color,
+                                border: "1px solid rgba(0,0,0,0.12)",
+                                flexShrink: 0,
+                              }}
+                            />
+                            <p className="text-[0.72rem] text-gray-400 tracking-wide uppercase">
+                              Colour
+                            </p>
+                          </div>
+                        </>
+                      )}
+                    </div>
                   </div>
 
                   <div className="flex items-center justify-between mt-2">
