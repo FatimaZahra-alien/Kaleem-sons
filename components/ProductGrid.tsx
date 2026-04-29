@@ -330,7 +330,7 @@ export default function ProductGrid() {
 
         @media (max-width: 900px) {
           .pg-section { padding: 48px 16px; }
-          .pg-heading-wrapper { margin-bottom: 24px; }
+          .pg-heading-wrapper { margin-bottom: 40px; }
           .pg-grid {
             grid-template-columns: repeat(2, 1fr);
             gap: 16px;
@@ -339,7 +339,7 @@ export default function ProductGrid() {
 
         @media (max-width: 480px) {
           .pg-section { padding: 40px 16px; }
-          .pg-heading-wrapper { margin-bottom: 20px; }
+          .pg-heading-wrapper { margin-bottom: 32px; }
           .pg-new-arrivals {
             font-size: clamp(2.4rem, 11vw, 3.2rem);
             -webkit-text-stroke: 1px #111;
@@ -353,7 +353,7 @@ export default function ProductGrid() {
 
         @media (min-width: 1000px) {
           .pg-section { padding: 80px 24px; }
-          .pg-heading-wrapper { margin-bottom: 48px; }
+          .pg-heading-wrapper { margin-bottom: 64px; }
           .pg-grid {
             grid-template-columns: repeat(4, 1fr);
             gap: 24px;

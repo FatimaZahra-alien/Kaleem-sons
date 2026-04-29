@@ -99,9 +99,7 @@ export default function ReturnsPage() {
             7-Day Return Window
           </span>
         </div>
-        <div style={{ position: "absolute", right: "-10px", bottom: "-20px", fontFamily: "Bebas Neue, sans-serif", fontSize: "clamp(80px, 22vw, 240px)", color: "#f2f2f2", lineHeight: 1, pointerEvents: "none", userSelect: "none" }}>
-          KS
-        </div>
+        
       </div>
 
       {/* Policy Summary Cards */}
