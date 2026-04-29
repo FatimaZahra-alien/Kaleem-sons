@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 
 const products = [
   "Oversize Tees",
-  "Full Compression Shirts",
+  "Hoodies",
   "Half Compression Shirts",
   "Tank Tops & Vests",
   "Training Shorts",
-  "Bottoms",
-  "Accessories",
+  "karate",
+  "jiu-jitsu",
 ];
 
 const reasons = [
@@ -66,41 +66,19 @@ export default function AboutPage() {
         .social-btn:hover { background: #000; color: #fff; }
       ` }} />
 
-      {/* Hero */}
-      <div style={{ borderBottom: "1px solid #e5e5e5", padding: "80px 24px 60px", position: "relative", overflow: "hidden" }}>
-        <div className={`about-fade ${visible ? "visible" : ""}`} style={{ transitionDelay: "0s" }}>
-          <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#aaa", marginBottom: "20px", fontWeight: 500 }}>
-            Est. Sialkot, Pakistan
-          </p>
-        </div>
-        <div className={`about-fade ${visible ? "visible" : ""}`} style={{ transitionDelay: "0.1s" }}>
-          <h1 className="hero-title" style={{ fontFamily: "Bebas Neue, sans-serif", lineHeight: 0.88, letterSpacing: "0.03em", color: "#000" }}>
-            KALEEM
-            <br />
-            <span style={{ WebkitTextStroke: "2px #000", color: "transparent" }}>SONS</span>
-          </h1>
-        </div>
-        <div className={`about-fade ${visible ? "visible" : ""}`} style={{ transitionDelay: "0.2s", marginTop: "32px", maxWidth: "520px" }}>
-          <p style={{ fontSize: "15px", color: "#555", lineHeight: 1.8, fontWeight: 400 }}>
-            Premium gym and fitness clothing from Sialkot, Pakistan. Built for athletes who train hard and demand more from their gear.
-          </p>
-        </div>
-        <div className={`about-fade ${visible ? "visible" : ""}`} style={{ transitionDelay: "0.3s", marginTop: "40px" }}>
-          <div style={{ width: "60px", height: "3px", background: "#000" }} />
-        </div>
-        {/* Watermark */}
-        <div style={{ position: "absolute", right: "-20px", bottom: "-20px", fontFamily: "Bebas Neue, sans-serif", fontSize: "clamp(80px, 20vw, 220px)", color: "#f0f0f0", lineHeight: 1, pointerEvents: "none", userSelect: "none", letterSpacing: "0.02em" }}>
-          KS
-        </div>
-      </div>
+     
 
       {/* Who We Are */}
+      
       <div className="section-pad" style={{ borderBottom: "1px solid #e5e5e5" }}>
         <div className="vision-grid">
           <div>
-            <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#aaa", marginBottom: "16px", fontWeight: 500 }}>
-              Who We Are
-            </p>
+           
+             <div className={`about-fade ${visible ? "visible" : ""}`} style={{ transitionDelay: "0s" }}>
+          <p style={{ fontSize: "13px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#aaa", marginBottom: "16px", fontWeight: 500 }}>
+            Est. Sialkot, Pakistan
+          </p>
+        </div>
             <h2 style={{ fontFamily: "Bebas Neue, sans-serif", fontSize: "clamp(36px, 6vw, 64px)", letterSpacing: "0.04em", color: "#000", lineHeight: 1, marginBottom: "32px" }}>
               ABOUT
               <br />
@@ -121,6 +99,11 @@ export default function AboutPage() {
           </div>
         </div>
       </div>
+       {/* Watermark */}
+        <div style={{ position: "absolute", right: "-20px", bottom: "-20px", fontFamily: "Bebas Neue, sans-serif", fontSize: "clamp(80px, 20vw, 220px)", color: "#f0f0f0", lineHeight: 1, pointerEvents: "none", userSelect: "none", letterSpacing: "0.02em" }}>
+          KS
+        </div>
+      
 
       {/* Vision */}
       <div style={{ background: "#000", padding: "0" }}>
@@ -226,41 +209,7 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* Contact */}
-      <div className="section-pad">
-        <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#aaa", marginBottom: "16px", fontWeight: 500 }}>
-          Get In Touch
-        </p>
-        <h2 style={{ fontFamily: "Bebas Neue, sans-serif", fontSize: "clamp(36px, 6vw, 64px)", letterSpacing: "0.04em", color: "#000", lineHeight: 1, marginBottom: "48px" }}>
-          CONTACT
-          <br />
-          AND CONNECT
-        </h2>
-        <div className="contact-grid">
-          <div style={{ marginBottom: "40px" }}>
-            {[
-              { label: "Location", value: "Sialkot, Pakistan", href: null },
-              { label: "Phone", value: "+92 326 5546 298", href: "tel:+923265546298" },
-              { label: "Email", value: "baseerbutt444@gmail.com", href: "mailto:baseerbutt444@gmail.com" },
-              { label: "Website", value: "KaleemSons.vercel.app", href: "https://KaleemSons.vercel.app" },
-            ].map((item) => (
-              <div key={item.label} style={{ paddingBottom: "24px", marginBottom: "24px", borderBottom: "1px solid #e5e5e5" }}>
-                <p style={{ fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase", color: "#aaa", marginBottom: "6px", fontWeight: 500 }}>
-                  {item.label}
-                </p>
-                {item.href ? (
-                  <a href={item.href} className="contact-link" style={{ fontSize: "15px" }}>
-                    {item.value}
-                  </a>
-                ) : (
-                  <p style={{ fontSize: "15px", color: "#000", fontWeight: 500 }}>{item.value}</p>
-                )}
-              </div>
-            ))}
-          </div>
-          
-        </div>
-      </div>
+     
     </div>
   );
 }

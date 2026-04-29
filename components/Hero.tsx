@@ -114,7 +114,7 @@ style={{ paddingLeft: "clamp(2.5rem, 4vw, 8rem)" }}
           
 
 
-          <Link href="/collections">
+          <Link href="/new-in">
   <motion.button
     className="group relative px-12 py-6 bg-white text-black text-sm tracking-[2.5px] uppercase font-semibold overflow-hidden flex items-center gap-3 shadow-lg"
     whileHover={{ scale: 1.03 }}

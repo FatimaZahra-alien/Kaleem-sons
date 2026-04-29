@@ -125,7 +125,7 @@ const sections = [
 ]
 
 export default function PrivacyPolicyPage() {
-  const lastUpdated = "April 26, 2025"
+  const lastUpdated = "April 26, 2026"
 
   return (
     <>
@@ -168,7 +168,7 @@ export default function PrivacyPolicyPage() {
         }
         .pp-headline span {
           display: block;
-          color: transparent;
+          color: black;
           -webkit-text-stroke: 1.5px #111;
         }
         .pp-meta {
@@ -196,7 +196,7 @@ export default function PrivacyPolicyPage() {
           font-family: 'Bebas Neue', sans-serif;
           font-size: 1.1rem;
           letter-spacing: 0.08em;
-          color: #bbb;
+          color: #black;
         }
         .pp-intro-text {
           font-family: 'DM Serif Display', serif;

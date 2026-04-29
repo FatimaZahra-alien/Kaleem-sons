@@ -38,9 +38,9 @@ function FAQItem({ q, a }: { q: string; a: string }) {
           {q}
         </span>
         <span style={{ width: "26px", height: "26px", minWidth: "26px", borderRadius: "50%", background: open ? "#000" : "transparent", border: "1.5px solid #000", display: "flex", alignItems: "center", justifyContent: "center", transition: "background 0.2s ease" }}>
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style={{ transform: open ? "rotate(45deg)" : "rotate(0deg)", transition: "transform 0.25s ease" }}>
-            <path d="M6 1v10M1 6h10" stroke={open ? "#fff" : "#000"} strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
+       <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.25s ease" }}>
+  <path d="M2 4l4 4 4-4" stroke={open ? "#fff" : "#000"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+</svg>
         </span>
       </div>
       <div style={{ overflow: "hidden", maxHeight: open ? "300px" : "0px", transition: "max-height 0.35s ease" }}>
@@ -88,7 +88,7 @@ export default function ReturnsPage() {
         <h1 style={{ fontFamily: "Bebas Neue, sans-serif", fontSize: "clamp(56px, 14vw, 130px)", lineHeight: 0.88, letterSpacing: "0.03em", color: "#000" }}>
           RETURNS
           <br />
-          <span style={{ WebkitTextStroke: "2px #000", color: "transparent" }}>AND EXCHANGES</span>
+          <span style={{ WebkitTextStroke: "2px #000", color: "black" }}>AND EXCHANGES</span>
         </h1>
         <p style={{ fontSize: "15px", color: "#666", lineHeight: 1.8, maxWidth: "500px", marginTop: "28px" }}>
           We want you to love every Kaleem Sons product. If something is not right, we make the return process as simple as possible.
@@ -162,41 +162,7 @@ export default function ReturnsPage() {
         </div>
       </div>
 
-      {/* CTA */}
-      <div style={{ background: "#000" }}>
-        <div className="r-pad">
-          <div className="r-cta-grid">
-            <div>
-              <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#555", marginBottom: "16px", fontWeight: 500 }}>
-                Need Help?
-              </p>
-              <h2 style={{ fontFamily: "Bebas Neue, sans-serif", fontSize: "clamp(32px, 5vw, 56px)", letterSpacing: "0.04em", color: "#fff", lineHeight: 1.05, marginBottom: "16px" }}>
-                STILL HAVE
-                <br />
-                QUESTIONS?
-              </h2>
-              <p style={{ fontSize: "14px", color: "#666", lineHeight: 1.7, maxWidth: "360px" }}>
-                Our team is ready to help. Contact us directly via WhatsApp or email and we will sort it out fast.
-              </p>
-            </div>
-            <div style={{ marginTop: "32px" }}>
-              <div>
-                <a href="https://wa.me/447513400064" target="_blank" rel="noopener noreferrer" className="r-cta-btn">
-                  WhatsApp Us
-                </a>
-              </div>
-              <div style={{ marginTop: "4px" }}>
-                <a href="mailto:baseerbutt444@gmail.com" className="r-cta-btn-outline">
-                  Email Us
-                </a>
-              </div>
-              <p style={{ fontSize: "12px", color: "#444", marginTop: "20px", letterSpacing: "0.04em" }}>
-                Response within 24 hours on business days
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      
     </div>
   );
 }

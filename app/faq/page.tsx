@@ -96,9 +96,9 @@ function FAQItem({ q, a }: { q: string; a: string }) {
           {q}
         </span>
         <span style={{ width: "26px", height: "26px", minWidth: "26px", borderRadius: "50%", background: open ? "#000" : "transparent", border: "1.5px solid #000", display: "flex", alignItems: "center", justifyContent: "center", transition: "background 0.2s ease" }}>
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style={{ transform: open ? "rotate(45deg)" : "rotate(0deg)", transition: "transform 0.25s ease" }}>
-            <path d="M6 1v10M1 6h10" stroke={open ? "#fff" : "#000"} strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
+         <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.25s ease" }}>
+  <path d="M2 4l4 4 4-4" stroke={open ? "#fff" : "#000"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+</svg>
         </span>
       </div>
       <div style={{ overflow: "hidden", maxHeight: open ? "400px" : "0px", transition: "max-height 0.35s ease" }}>
@@ -169,13 +169,11 @@ export default function FAQPage() {
           <h1 className="faq-h1" style={{ fontFamily: "Bebas Neue, sans-serif", lineHeight: 0.9, letterSpacing: "0.04em", color: "#000", margin: 0 }}>
             FREQUENTLY
             <br />
-            ASKED
+            ASKED Questions
           </h1>
         </div>
         <div className="faq-hero-right" style={{ display: "flex", flexDirection: "column", gap: "10px", paddingBottom: "4px" }}>
-          <span className="faq-questions" style={{ fontFamily: "Bebas Neue, sans-serif", lineHeight: 0.9, letterSpacing: "0.04em", color: "#000" }}>
-            QUESTIONS
-          </span>
+        
           <p style={{ fontSize: "13px", color: "#666", maxWidth: "240px", lineHeight: 1.6, margin: 0 }}>
             Everything you need to know about orders, returns, sizing, and more.
           </p>

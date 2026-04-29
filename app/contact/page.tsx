@@ -56,7 +56,7 @@ export default function ContactPage() {
         <h1 style={{ fontFamily: "Bebas Neue, sans-serif", fontSize: "clamp(56px, 14vw, 130px)", lineHeight: 0.88, letterSpacing: "0.03em", color: "#000" }}>
           CONTACT
           <br />
-          <span style={{ WebkitTextStroke: "2px #000", color: "transparent" }}>US</span>
+          US
         </h1>
         <p style={{ fontSize: "15px", color: "#666", lineHeight: 1.8, maxWidth: "480px", marginTop: "28px" }}>
           Have a question about an order, product, or partnership? We are here to help. Reach out and we will get back to you as soon as possible.
